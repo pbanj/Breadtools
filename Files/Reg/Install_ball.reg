@@ -1,0 +1,67 @@
+Windows Registry Editor Version 5.00
+
+; Created by: Pbanj with some help from scripts from sevenforums.com
+
+[HKEY_CLASSES_ROOT\Directory\background\shell\Tools]
+"MUIVerb"="Tools"
+"SubCommands"="regedit.Tools;OACH.Tools;OCH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
+"Icon"="C:\\Windows\\tools.ico"
+"Position"="bottom"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OCH.Tools]
+"Icon"="C:\\Windows\\System32\\cmd.exe"
+@="Cmd Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OCH.Tools\command]
+@="\"C:\\Windows\\System32\\cmd.exe\" /s /k pushd \"%V\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\regedit.Tools]
+"Icon"="C:\\Windows\\regedit.exe"
+"MUIVerb"="Regedit"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\regedit.Tools\command]
+@="explorer /root,C:\\Windows\\regedit.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RE.Tools]
+"Icon"="C:\\Windows\\explorer.exe"
+"MUIVerb"="Restart Explorer"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RE.Tools\command]
+@="\"C:\\Windows\\System32\\cmd.exe\" /c \"taskkill /f /im explorer.exe & start explorer.exe\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\FE.Tools]
+"Icon"="C:\\Windows\\file.ico"
+"MUIVerb"="Files Extensions"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\FE.Tools\command]
+@="explorer /root,C:\\Windows\\Files_Extensions.vbs"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\HF.Tools]
+"MUIVerb"="Hidden Files"
+@="HasUAShield"
+"Icon"="C:\\Windows\\file.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\HF.Tools\Command]
+@="explorer /root,C:\\Windows\\Hidden_Files.vbs"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OACH.Tools]
+"Icon"="imageres.dll,-5324"
+@="Admin Cmd Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OACH.Tools\command]
+@="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V' -Verb RunAs\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OAPS.Tools]
+"ImpliedSelectionModel"=dword:00000001
+"Icon"="imageres.dll,-5373"
+"ExplorerCommandHandler"="{BF0AC53F-D51C-419F-92E3-2298E125F004}"
+@="Admin Pshell Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OPSH.Tools]
+@="Powershell Here"
+"Icon"="imageres.dll,-5373"
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OPSH.Tools\command]
+@="powershell.exe -noexit -command Set-Location -literalPath '%V'"
