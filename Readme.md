@@ -1,7 +1,7 @@
 This will install a menu to your context(right click) menu.  
 items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, and open admin powershell here.
 
-**steps:**
+**HOW TO USE:**
 
 1. Run Tools.bat as admin
 2. Follow what it says
