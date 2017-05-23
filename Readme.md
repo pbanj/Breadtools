@@ -1,5 +1,5 @@
 This will install a menu to your context(right click) menu.  
-items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, and open admin powershell here.
+items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open admin powershell here, and open powershell here.
 
 **Newest ver may only work fully on windows 10 with the creators update.**
 here is an older ver that will work on windows 8/8.1 and should work on 7: [Tools_menu.zip](https://cdn.discordapp.com/attachments/246402376099954689/288882232892981249/Tools_Menu.zip)
