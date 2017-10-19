@@ -4,7 +4,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\background\shell\Tools]
 "MUIVerb"="Tools"
-"SubCommands"="regedit.Tools;OACH.Tools;OCH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
+"SubCommands"="regedit.Tools;OACH.Tools;OCH.Tools;OBH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
 "Icon"="C:\\Windows\\tools.ico"
 "Position"="bottom"
 
@@ -65,3 +65,10 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OPSH.Tools\command]
 @="powershell.exe -noexit -command Set-Location -literalPath '%V'"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OBH.Tools]
+@="Open Bash Here"
+"Icon"="%USERPROFILE%\\AppData\\Local\\lxss\\bash.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OBH.Tools\command]
+@="cmd.exe /c cd /d \"%V\" && bash.exe"

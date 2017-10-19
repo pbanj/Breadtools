@@ -30,14 +30,16 @@ if you would like take ownership in your context menu you will find it in the "t
 
 - V0.7 - fixed broken "Admin Cmd Here" for windows 10(thanks microsoft -_-), and added  "powershell here" for opening powershell in the current directory.
 
+- v0.8 - added open bash here. take note that you must [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) for this to work.
+
 
 **what the tool menu looks like**
 
 
-![Imgur](http://i.imgur.com/FsU6spb.png)
+![Tools](https://i.imgur.com/KiXfu3Q.png)
 
 
 **what the power menu looks like with all options**
 
 
-![Imgur](http://i.imgur.com/d7gK35h.png)
+![Power](http://i.imgur.com/d7gK35h.png)
