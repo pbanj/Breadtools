@@ -13,7 +13,7 @@ Windows Registry Editor Version 5.00
 @="Cmd Here"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OCH.Tools\command]
-@="\"C:\\Windows\\System32\\cmd.exe\" /s /k pushd \"%V\""
+@="C:\\Windows\\System32\\cmd.exe"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\regedit.Tools]
 "Icon"="C:\\Windows\\regedit.exe"
@@ -71,4 +71,4 @@ Windows Registry Editor Version 5.00
 "Icon"="%USERPROFILE%\\AppData\\Local\\lxss\\bash.ico"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OBH.Tools\command]
-@="cmd.exe /c cd /d \"%V\" && bash.exe"
+@="C:\Windows\System32\bash.exe"
