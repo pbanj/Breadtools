@@ -34,6 +34,7 @@ if you would like take ownership in your context menu you will find it in the "t
 
 - v0.9 - removed the need to open cmd first to open bash. take note that you must [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) for this to work.
 
+- v1.0 - fixed bash not opening, made bash optional for those that don't want it.
 
 **what the tool menu looks like**
 
