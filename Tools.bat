@@ -100,6 +100,24 @@ goto pos
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_all.reg
 xcopy Files\Too C:\Windows
+goto start_bash
+
+:bash
+:start_bash
+cls
+echo Do you want open bash here?
+echo You must enable the linux subsystem for this to work.
+echo See the readme for a link to enable lss.
+echo 1. Yes
+echo 2. No
+set /P A=Choose yes or no then press enter. 
+if %A%==1 goto bashi
+if %A%==2 goto done
+goto start_bash
+
+:bashi
+cd /d %~dp0
+REGEDIT /s Files\Reg\bash.reg
 echo Done installing. Have a fucked day.
 pause
 exit
@@ -108,6 +126,24 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_tall.reg
 xcopy Files\Too C:\Windows
+goto tbash
+
+:tbash
+:start_tbash
+cls
+echo Do you want open bash here?
+echo You must enable the linux subsystem for this to work.
+echo See the readme for a link to enable lss.
+echo 1. Yes
+echo 2. No
+set /P A=Choose yes or no then press enter. 
+if %A%==1 goto tbashi
+if %A%==2 goto done
+goto start_tbash
+
+:tashi
+cd /d %~dp0
+REGEDIT /s Files\Reg\tbash.reg
 echo Done installing. Have a fucked day.
 pause
 exit
@@ -116,6 +152,30 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_ball.reg
 xcopy Files\Too C:\Windows
+goto bbash
+
+:bbash
+:start_bbash
+cls
+echo Do you want open bash here?
+echo You must enable the linux subsystem for this to work.
+echo See the readme for a link to enable lss.
+echo 1. Yes
+echo 2. No
+set /P A=Choose yes or no then press enter. 
+if %A%==1 goto bbashi
+if %A%==2 goto done
+goto start_bbash
+
+:bbashi
+cd /d %~dp0
+REGEDIT /s Files\Reg\bbash.reg
+echo Done installing. Have a fucked day.
+pause
+exit
+
+:done
+cls
 echo Done installing. Have a fucked day.
 pause
 exit

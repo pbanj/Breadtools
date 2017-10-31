@@ -1,0 +1,16 @@
+Windows Registry Editor Version 5.00
+
+; Created by: Pbanj.
+
+[HKEY_CLASSES_ROOT\Directory\background\shell\Tools]
+"MUIVerb"="Tools"
+"SubCommands"="regedit.Tools;OACH.Tools;OCH.Tools;OBH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
+"Icon"="C:\\Windows\\tools.ico"
+"Position"="bottom"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OBH.Tools]
+@="Open Bash Here"
+"Icon"="%USERPROFILE%\\AppData\\Local\\lxss\\bash.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OBH.Tools\command]
+@="C:\\Windows\\System32\\bash.exe"
