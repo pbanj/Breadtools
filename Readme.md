@@ -41,7 +41,7 @@ if you would like take ownership in your context menu you will find it in the "t
 **what the tool menu looks like**
 
 
-![Tools](https://i.imgur.com/KiXfu3Q.png)
+![Tools](https://i.imgur.com/YJcfjSb.png)
 
 
 **what the power menu looks like with all options**
