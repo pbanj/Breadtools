@@ -49,7 +49,7 @@ Windows Registry Editor Version 5.00
 @="Admin Cmd Here"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OACH.Tools\command]
-@="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V' -Verb RunAs\""
+@="PowerShell -windowstyle hidden -Command \"Start-Process cmd.exe -ArgumentList '/s,/k,pushd,%V' -Verb RunAs\""
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OAPS.Tools]
 "ImpliedSelectionModel"=dword:00000001
@@ -59,7 +59,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OPSH.Tools]
 @="Powershell Here"
-"Icon"="imageres.dll,-5373"
+"Icon"="imageres.dll,-5372"
 "NoWorkingDirectory"=""
 "ShowBasedOnVelocityId"=dword:00639bc8
 
