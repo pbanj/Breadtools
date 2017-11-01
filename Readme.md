@@ -36,6 +36,8 @@ if you would like take ownership in your context menu you will find it in the "t
 
 - v1.0 - fixed bash not opening, made bash optional for those that don't want it.
 
+- v1.1 - fixed admin cmd not working for some people
+
 **what the tool menu looks like**
 
 
