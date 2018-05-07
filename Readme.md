@@ -40,6 +40,8 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v1.2 - Added settings menu
 
+- v1.3 - Removed gap in middle of settings menu
+
 **What the tool menu looks like with all options**
 
 

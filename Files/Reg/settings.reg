@@ -18,7 +18,6 @@ Windows Registry Editor Version 5.00
 "DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
 
 [HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\System]
-"CommandFlags"=dword:00000020
 "MUIVerb"="System"
 "Icon"="C:\\Windows\\system.ico"
 "SettingsURI"="ms-settings:display"
