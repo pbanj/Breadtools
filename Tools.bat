@@ -18,13 +18,12 @@ exit
 
 :start
 cls
-echo Welcome, this will install a tools and or power menu into your context menu. 
-echo Power menu only shows on desktop.
+echo Welcome, this will install a tools, power menu, and or a settings menu into your context menu. 
+echo Power menu and Settings only shows on desktop.
 echo Batch file, and reg files made by pbanj.
 echo VB Scripts by sevenforums.com.
 echo Icons from google :p
-echo Thanks to TizzyT for answering my questions and
-echo Steveo1978 for the idea of making the script.
+echo Thanks to xGhostboyx for the settings menu icons.
 echo 1. Install
 echo 2. Uninstall
 echo 3. Exit
@@ -43,14 +42,16 @@ echo 2. Power
 echo 3. Power with sleep, hibernate, and switch users
 echo 4. Tool and Power
 echo 5. Tool and power with sleep, hibernate, and switch users
-echo 6. Start over
+echo 6. Settings
+echo 7. Start over
 set /P A=Choose Option then press enter. 
 if %A%==1 goto pos
 if %A%==2 goto pow1
 if %A%==3 goto pow2
 if %A%==4 goto tp1
 if %A%==5 goto tp2
-if %A%==6 goto start
+if %A%==6 goto settings
+if %A%==7 goto start
 goto start_inst
 
 :pos
@@ -100,20 +101,31 @@ goto pos
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_all.reg
 xcopy Files\Too C:\Windows
-goto start_bash
+goto extras
 
-:bash
-:start_bash
+:extras
+:start_extras
 cls
-echo Do you want open bash here?
-echo You must enable the linux subsystem for this to work.
-echo See the readme for a link to enable lss.
-echo 1. Yes
-echo 2. No
-set /P A=Choose yes or no then press enter. 
-if %A%==1 goto bashi
-if %A%==2 goto done
-goto start_bash
+echo Do you want Open bash here and or Settings?
+echo 1. Both
+echo 2. Bash
+echo 3. Settings
+echo 4. None
+set /P A=Choose one then press enter. 
+if %A%==1 goto aextras
+if %A%==2 goto bashi
+if %A%==3 goto settings
+if %A%==4 goto done
+goto start_extras
+
+:aextras
+cd /d %~dp0
+REGEDIT /s Files\Reg\bash.reg
+REGEDIT /s Files\Reg\settings.reg
+xcopy Files\Sett C:\Windows
+echo Done installing. Have a fucked day.
+pause
+exit
 
 :bashi
 cd /d %~dp0
@@ -122,26 +134,45 @@ echo Done installing. Have a fucked day.
 pause
 exit
 
+:settings
+cd /d %~dp0
+REGEDIT /s Files\Reg\settings.reg
+xcopy Files\Sett C:\Windows
+goto done
+pause
+exit
+
 :tall
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_tall.reg
 xcopy Files\Too C:\Windows
-goto tbash
+goto textras
 
-:tbash
-:start_tbash
+:textras
+:start_textras
 cls
-echo Do you want open bash here?
-echo You must enable the linux subsystem for this to work.
-echo See the readme for a link to enable lss.
-echo 1. Yes
-echo 2. No
-set /P A=Choose yes or no then press enter. 
-if %A%==1 goto tbashi
-if %A%==2 goto done
-goto start_tbash
+echo Do you want Open bash here and or Settings?
+echo 1. Both
+echo 2. Bash
+echo 3. Settings
+echo 4. None
+set /P A=Choose one then press enter. 
+if %A%==1 goto taextras
+if %A%==2 goto tbashi
+if %A%==3 goto settings
+if %A%==4 goto done
+goto start_textras
 
-:tashi
+:taextras
+cd /d %~dp0
+REGEDIT /s Files\Reg\tbash.reg
+REGEDIT /s Files\Reg\settings.reg
+xcopy Files\Sett C:\Windows
+echo Done installing. Have a fucked day.
+pause
+exit
+
+:tbashi
 cd /d %~dp0
 REGEDIT /s Files\Reg\tbash.reg
 echo Done installing. Have a fucked day.
@@ -152,20 +183,31 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Install_ball.reg
 xcopy Files\Too C:\Windows
-goto bbash
+goto bextras
 
-:bbash
-:start_bbash
+:bextras
+:start_bextras
 cls
-echo Do you want open bash here?
-echo You must enable the linux subsystem for this to work.
-echo See the readme for a link to enable lss.
-echo 1. Yes
-echo 2. No
-set /P A=Choose yes or no then press enter. 
-if %A%==1 goto bbashi
-if %A%==2 goto done
-goto start_bbash
+echo Do you want Open bash here and or Settings?
+echo 1. Both
+echo 2. Bash
+echo 3. Settings
+echo 4. None
+set /P A=Choose one then press enter. 
+if %A%==1 goto baextras
+if %A%==2 goto bbashi
+if %A%==3 goto settings
+if %A%==4 goto done
+goto start_bextras
+
+:baextras
+cd /d %~dp0
+REGEDIT /s Files\Reg\bbash.reg
+REGEDIT /s Files\Reg\settings.reg
+xcopy Files\Sett C:\Windows
+echo Done installing. Have a fucked day.
+pause
+exit
 
 :bbashi
 cd /d %~dp0
@@ -187,16 +229,18 @@ echo Uninstall
 echo 1. Uninstall All
 echo 2. Uninstall Tools
 echo 3. Uninstall Power
+echo 4. Uninstall Settings
 set /P A=Choose what to uninstall then press enter. 
 if %A%==1 goto uall
 if %A%==2 goto utoo
 if %A%==3 goto upow
+if %A%==4 goto uset
 goto start_unin
 
 :uall
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_all.reg
-del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico
+del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico
 echo Done Uninstalling. Have a fucked day.
 pause
 exit
@@ -213,6 +257,14 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_Po.reg
 del C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico
+echo Done Uninstalling. Have a fucked day.
+pause
+exit
+
+:uset
+cd /d %~dp0
+REGEDIT /s Files\Reg\Uninstall_Settings.reg
+del C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico
 echo Done Uninstalling. Have a fucked day.
 pause
 exit

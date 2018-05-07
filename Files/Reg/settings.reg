@@ -1,0 +1,44 @@
+Windows Registry Editor Version 5.00
+
+; Created by: Pbanj.
+
+
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings]
+"Position"="Bottom"
+"Icon"="SystemSettingsBroker.exe"
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\1Settings]
+"Icon"="C:\\Windows\\settings.ico"
+"MUIVerb"="Settings"
+"SettingsURI"="ms-settings:"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\1Settings\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\System]
+"CommandFlags"=dword:00000020
+"MUIVerb"="System"
+"Icon"="C:\\Windows\\system.ico"
+"SettingsURI"="ms-settings:display"
+
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\System\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\Network]
+"MUIVerb"="Network && Internet"
+"Icon"="C:\\Windows\\network.ico"
+"SettingsURI"="ms-settings:network"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\Network\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\Update]
+"MUIVerb"="Update && security"
+"Icon"="C:\\Windows\\update.ico"
+"SettingsURI"="ms-settings:windowsupdate"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\Settings\shell\Update\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
