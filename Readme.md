@@ -55,4 +55,4 @@ If you would like take ownership in your context menu you will find it in the "t
 
 **What the settings menu looks like**
 
-![settings](https://i.imgur.com/NTJnV2Z.png)
+![settings](https://i.imgur.com/9epxxU5.png)
