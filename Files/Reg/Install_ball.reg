@@ -4,7 +4,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\background\shell\Tools]
 "MUIVerb"="Tools"
-"SubCommands"="regedit.Tools;OACH.Tools;OCH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
+"SubCommands"="regedit.Tools;runas;OCH.Tools;OAPS.Tools;OPSH.Tools;FE.Tools;HF.Tools;RE.Tools"
 "Icon"="C:\\Windows\\tools.ico"
 "Position"="bottom"
 
@@ -44,12 +44,13 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\HF.Tools\Command]
 @="explorer /root,C:\\Windows\\Hidden_Files.vbs"
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OACH.Tools]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\runas]
 "Icon"="imageres.dll,-5324"
 @="Admin Cmd Here"
+"HasLUAShield"=""
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OACH.Tools\command]
-@="PowerShell -windowstyle hidden -Command \"Start-Process cmd.exe -ArgumentList '/s,/k,pushd,%V' -Verb RunAs\""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\runas\command]
+@="C:\\Windows\\System32\\cmd.exe /s /k pushd %V"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\OAPS.Tools]
 "ImpliedSelectionModel"=dword:00000001
