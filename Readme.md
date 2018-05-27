@@ -36,11 +36,13 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v1.0 - Fixed bash not opening, made bash optional for those that don't want it.
 
-- v1.1 - Fixed admin cmd not working for some people
+- v1.1 - Fixed admin cmd not working for some people.
 
-- v1.2 - Added settings menu
+- v1.2 - Added settings menu.
 
-- v1.3 - Removed gap in middle of settings menu
+- v1.3 - Removed gap in middle of settings menu.
+
+- v1.4 - Added distro selectable icons for bash.
 
 **What the tool menu looks like with all options**
 

@@ -8,7 +8,7 @@ goto check_Permissions
         echo off
     ) else (
         echo I know reading is hard but come on, it's a small text file. Go RTFM.
-		echo If this was a 3ds you would have bricked.
+		echo If this was a 3ds you'd have bricked.
 pause
 exit
     )
@@ -123,16 +123,12 @@ cd /d %~dp0
 REGEDIT /s Files\Reg\bash.reg
 REGEDIT /s Files\Reg\settings.reg
 xcopy Files\Sett C:\Windows
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
 
 :bashi
 cd /d %~dp0
 REGEDIT /s Files\Reg\bash.reg
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
 
 :settings
 cd /d %~dp0
@@ -168,16 +164,12 @@ cd /d %~dp0
 REGEDIT /s Files\Reg\tbash.reg
 REGEDIT /s Files\Reg\settings.reg
 xcopy Files\Sett C:\Windows
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
 
 :tbashi
 cd /d %~dp0
 REGEDIT /s Files\Reg\tbash.reg
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
 
 :ball
 cd /d %~dp0
@@ -205,16 +197,47 @@ cd /d %~dp0
 REGEDIT /s Files\Reg\bbash.reg
 REGEDIT /s Files\Reg\settings.reg
 xcopy Files\Sett C:\Windows
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
 
 :bbashi
 cd /d %~dp0
 REGEDIT /s Files\Reg\bbash.reg
-echo Done installing. Have a fucked day.
-pause
-exit
+goto bicons
+
+:bicons
+:start_bicons
+cls
+echo Which distro do you use for WSL?
+echo 1. Ubuntu
+echo 2. Debian
+echo 3. Kali
+echo 4. Suse
+set /P A=Choose one then press enter. 
+if %A%==1 goto ub
+if %A%==2 goto de
+if %A%==3 goto ka
+if %A%==4 goto su
+goto start_bicons
+
+:ub
+cd /d %~dp0
+xcopy Files\Bash\Ubuntu C:\Windows
+goto done
+
+:de
+cd /d %~dp0
+xcopy Files\Bash\Debian C:\Windows
+goto done
+
+:ka
+cd /d %~dp0
+xcopy Files\Bash\Kali C:\Windows
+goto done
+
+:su
+cd /d %~dp0
+xcopy Files\Bash\Suse C:\Windows
+goto done
 
 :done
 cls
@@ -240,7 +263,7 @@ goto start_unin
 :uall
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_all.reg
-del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico
+del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico C:\Windows\bash.ico
 echo Done Uninstalling. Have a fucked day.
 pause
 exit
@@ -248,7 +271,7 @@ exit
 :utoo
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_Tool.reg
-del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico
+del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\bash.ico
 echo Done Uninstalling. Have a fucked day.
 pause
 exit
