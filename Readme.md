@@ -44,6 +44,9 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v1.4 - Added distro selectable icons for bash.
 
+- v1.5 - Removed the need for powershell to open admin CMD. May cause issues if you have anything using the key in "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\runas" it will replace it with admin CMD. There's nothing on my pc that uses it as it is an alternate location than the standard "runas" key so it should be fine.
+
+
 **What the tool menu looks like with all options**
 
 
