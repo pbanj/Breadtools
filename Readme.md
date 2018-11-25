@@ -26,9 +26,9 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v0.5 - Fixed an issue in the hidden files vbs(thanks LEDelete for pointing it out), fixed missing icon folder copy command in install script (thanks trm96 for pointing that out) should fix icons not showing up
 
-- V0.6 - Fixed missing power menu icons again.
+- v0.6 - Fixed missing power menu icons again.
 
-- V0.7 - Fixed broken "Admin Cmd Here" for windows 10(thanks microsoft -_-), and added  "powershell here" for opening powershell in the current directory.
+- v0.7 - Fixed broken "Admin Cmd Here" for windows 10(thanks microsoft -_-), and added  "powershell here" for opening powershell in the current directory.
 
 - v0.8 - Added open bash here. take note that you must [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) for this to work.
 
