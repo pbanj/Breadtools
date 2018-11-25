@@ -46,9 +46,9 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v1.5 - Removed the need for powershell to open admin CMD. May cause issues if you have anything using the key in "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\runas" it will replace it with admin CMD. There's nothing on my pc that uses it as it is an alternate location than the standard "runas" key so it should be fine.
 
-- v1.6 - forgot to change the bash reg files.
+- v1.6 - Forgot to change the bash reg files.
 
-- v1.7 - cleaned up the admin cmd command to shut kip up.
+- v1.7 - Cleaned up the admin cmd command to shut kip up.
 
 
 
