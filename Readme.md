@@ -48,7 +48,7 @@ If you would like take ownership in your context menu you will find it in the "t
 
 - v1.6 - forgot to change the bash reg files.
 
-- v1.7 - cleaned up the admin cmd command to shut kip up
+- v1.7 - cleaned up the admin cmd command to shut kip up.
 
 
 
