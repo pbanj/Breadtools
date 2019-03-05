@@ -14,7 +14,7 @@ exit
     )
 
 @echo off
-CLS
+CLS
 
 :start
 cls
