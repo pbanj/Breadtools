@@ -11,7 +11,7 @@ Here is an older ver that will work on windows 8/8.1 and should work on 7: [Tool
 2. Follow what it says
 3. If icons dont show up reboot or restart explorer
 
-if you want to use open bash here you need to follow [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
+If you want to use open bash here you need to follow [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
 
 If you would like take ownership in your context menu you will find it in the "take ownership" folder. 
 
