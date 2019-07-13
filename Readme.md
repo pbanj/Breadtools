@@ -13,7 +13,7 @@ Here is an older ver that will work on windows 8/8.1 and should work on 7: [Tool
 
 If you want to use open bash here you need to follow [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
 
-If you would like take ownership in your context menu you will find it in the "take ownership" folder. 
+If you'd like take ownership in your context menu you will find it in the "take ownership" folder. 
 
 **What the tool menu looks like with all options**
 
