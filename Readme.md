@@ -3,6 +3,8 @@ Items include regedit, open cmd here(normal and admin) show/hide known file type
 
 This is meant for advanced users who are comfortable editing registry files as this is very much an alpha
 
+- Admin terminals made possible from a script from https://github.com/lextm/windowsterminal-shell
+
 **YOU MUST EDIT THE INSTALL REGISTRY FILE FOR THE POSISTION YOU WANT**
 1. Open it in a text editor. search for `replace` and replace it with your windows username
 example:
