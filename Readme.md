@@ -31,6 +31,6 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 5. If icons don't show up reboot or restart explorer
 
 
-**Changelog:**
+**Changelog:**  
 0.00000000069 testing  
 0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)
