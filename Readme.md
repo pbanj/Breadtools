@@ -33,4 +33,5 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 **Changelog:**  
 0.00000000069 testing  
-0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)
+0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
+0.0000069 fix n++ fuckery
