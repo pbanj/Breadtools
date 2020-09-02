@@ -24,16 +24,7 @@ namespace Bread_Tools
         private string highLightColor = "#CFCFCF";
         private string unHighLightColor = "#E6E6E6";
 
-        private static string APPDATA_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        private static string SAVE_DIRECTORY = APPDATA_DIRECTORY + "/Bread Tools";
-        private static string SAVE_FILE = SAVE_DIRECTORY + "/Settings";
-
         private static string USERNAME = Environment.UserName;
-
-        Dictionary<string, bool> settings = new Dictionary<string, bool>()
-        {
-
-        };
 
         public static bool IsAdministrator()
         {
@@ -48,14 +39,12 @@ namespace Bread_Tools
         {
             InitializeComponent();
 
-            if (!Directory.Exists(SAVE_DIRECTORY))
-                Directory.CreateDirectory(SAVE_DIRECTORY);
+            MessagePackSerializer.DefaultOptions = MessagePack.Resolvers.ContractlessStandardResolver.Options;
 
-            if (!File.Exists(SAVE_FILE))
-            {
-                var bin = MessagePackSerializer.Serialize(Settings.Data);
-                File.WriteAllBytes(SAVE_FILE, bin);
-            }
+            if (Settings.HasSettings())
+                Settings.LoadSettings();
+
+            Settings.SaveSettings();
 
             this.general = new GeneralPage();
             this.command = new CommandPage();

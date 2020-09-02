@@ -1,6 +1,4 @@
 ﻿using Bread_Tools.Resources;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,10 +9,44 @@ namespace Bread_Tools
 {
     public partial class GeneralPage : Page
     {
-        Settings.General general = new Settings.General();
+        Settings.General general;
 
         public GeneralPage()
-            => InitializeComponent();
+        {
+            InitializeComponent();
+
+            this.general = new Settings.General();
+
+            if (Settings.HasSettings())
+                this.general = Settings.Data.general;
+
+            foreach (var x in this.DataGrid.Children.OfType<Grid>())
+            {
+                foreach (var y in x.Children.OfType<StackPanel>())
+                {
+                    foreach (UIElement item in y.Children)
+                    {
+                        foreach (var field in typeof(Settings.General).GetFields())
+                        {
+                            if (item is Toggle && (item as Toggle).Name == field.Name)
+                                (item as Toggle).IsOn = (bool)field.GetValue(this.general);
+                            else if (item is RadioButton)
+                            {
+                                RadioButton radio = (item as RadioButton);
+
+                                if (field.Name == "position")
+                                {
+                                    string pos = (string)field.GetValue(this.general);
+
+                                    if (radio.Content.ToString() == pos)
+                                        radio.IsChecked = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -22,10 +54,10 @@ namespace Bread_Tools
             string messageBoxText = "Do you want to save changes?";
             string caption = "Bread Tools";
 
-            //MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            //MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
 
-            //MessageBox.Show(messageBoxText, caption, button, icon);
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 
             foreach (var x in this.DataGrid.Children.OfType<Grid>())
             {
@@ -52,9 +84,11 @@ namespace Bread_Tools
                 }
             }
 
-            Settings.Data.general = this.general;
-            foreach (var field in typeof(Settings.General).GetFields())
-                Console.WriteLine(field.GetValue(Settings.Data.general));
+            if (result == MessageBoxResult.Yes)
+            {
+                Settings.Data.general = this.general;
+                Settings.SaveSettings();
+            }
         }
     }
 }
