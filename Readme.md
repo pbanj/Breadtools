@@ -30,9 +30,9 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 4. Follow what it says
 5. If icons don't show up reboot or restart explorer
 
-![tools](https://i.imgur.com/FdsUoai.png)
-![terminal](https://i.imgur.com/eXqbfyj.png)
-![settings](https://i.imgur.com/Uk27FCh.png)
+![tools](https://i.imgur.com/FdsUoai.png)  
+![terminal](https://i.imgur.com/eXqbfyj.png)  
+![settings](https://i.imgur.com/Uk27FCh.png)  
 
 
 **Changelog:**  
