@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Name="MainWindow1" x:Class="Bread_Tools.MainWindow"
+        mc:Ignorable="d"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/"
+        Title="Bread Tools" Height="480" Width="600" Icon="icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid Background="Transparent">
+        <StackPanel Name="MainPanel" Width="170" HorizontalAlignment="Left" Background="#E6E6E6">
+            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="ShowGeneralPage" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <Rectangle Width="2" Height="16" Margin="7,0,0,0"></Rectangle>
+                <fa5:SvgAwesome Icon="Solid_Tools" Width="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,0,7,0" />
+                <Label VerticalContentAlignment="Center" Content="General" HorizontalContentAlignment="Left" Background="Transparent" FontSize="18" Height="44" BorderBrush="Transparent" Padding="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="ShowCommandPage" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <Rectangle Width="2" Height="16" Margin="7,0,0,0"></Rectangle>
+                <fa5:SvgAwesome Icon="Solid_Terminal" Width="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,7,0" />
+                <Label VerticalContentAlignment="Center" Content="Command Line" HorizontalContentAlignment="Left" Background="Transparent" FontSize="18" Height="44" BorderBrush="Transparent" Padding="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="ShowPowerPage" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <Rectangle Width="2" Height="16" Margin="7,0,0,0"></Rectangle>
+                <fa5:SvgAwesome Icon="Solid_PowerOff" Width="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,7,0" />
+                <Label VerticalContentAlignment="Center" Content="Power" HorizontalContentAlignment="Left" Background="Transparent" FontSize="18" Height="44" BorderBrush="Transparent" Padding="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="ShowPCSettingsPage" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <Rectangle Width="2" Height="16" Margin="7,0,0,0"></Rectangle>
+                <fa5:SvgAwesome Icon="Brands_Windows" Width="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,7,0" />
+                <Label VerticalContentAlignment="Center" Content="PC Settings" HorizontalContentAlignment="Left" Background="Transparent" FontSize="18" Height="44" BorderBrush="Transparent" Padding="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,44,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="ApplySettings" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <fa5:SvgAwesome Icon="Solid_SignOutAlt" Width="16" HorizontalAlignment="Center" Margin="11,0,7,0" UseLayoutRounding="False" VerticalAlignment="Center"/>
+                <Label FontSize="18" Content="Apply Changes" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <Label Width="{Binding Path=Width, ElementName=MainPanel}" HorizontalAlignment="Left" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Version 0.1.0
+        </Label>
+        <Frame NavigationUIVisibility="Hidden" x:Name="PageContent" Margin="170,0,0,0"/>
+    </Grid>
+</Window>

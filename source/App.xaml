@@ -1,0 +1,9 @@
+﻿<Application x:Class="Bread_Tools.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Bread_Tools"
+             StartupUri="Resources/MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="FontAwesome">/Resources/FontAwesome 5 Free Solid</FontFamily>
+    </Application.Resources>
+</Application>
