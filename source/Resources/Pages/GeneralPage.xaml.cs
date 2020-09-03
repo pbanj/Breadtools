@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-using Toggle = ToggleSwitch.ToggleSwitch;
-
 namespace Bread_Tools
 {
     public partial class GeneralPage : Page

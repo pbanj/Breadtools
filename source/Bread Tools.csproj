@@ -25,8 +25,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -135,6 +135,7 @@
     <Compile Include="Resources\Pages\PowerPage.xaml.cs">
       <DependentUpon>PowerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Registry.cs" />
     <Compile Include="Resources\Settings.cs" />
     <Page Include="Resources\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -218,4 +219,10 @@
     <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir libs &amp; move *.dll libs &amp; move *.xml libs &amp; rmdir /Q /S app.publish</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rmdir /Q /S libs</PreBuildEvent>
+  </PropertyGroup>
 </Project>
