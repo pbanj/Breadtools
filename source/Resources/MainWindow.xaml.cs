@@ -2,8 +2,6 @@
 using Bread_Tools.Resources.Pages;
 using MessagePack;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Windows;
@@ -112,7 +110,6 @@ namespace Bread_Tools
             Rectangle rect = panel.Children.OfType<Rectangle>().First();
 
             rect.Fill = Brushes.DeepSkyBlue;
-
         }
 
         private void ShowGeneralPage(object sender, MouseButtonEventArgs e)
@@ -141,7 +138,6 @@ namespace Bread_Tools
 
         private void ApplySettings(object sender, MouseButtonEventArgs e)
         {
-
         }
     }
 }

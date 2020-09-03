@@ -1,5 +1,5 @@
 ﻿using Bread_Tools.Resources;
-using System.Linq;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,45 +9,30 @@ namespace Bread_Tools
 {
     public partial class GeneralPage : Page
     {
-        Settings.General general;
+        private Settings.General general;
+        private List<UIElement> elements;
 
         public GeneralPage()
         {
             InitializeComponent();
 
-            this.general = new Settings.General();
-
             if (Settings.HasSettings())
                 this.general = Settings.Data.general;
+            else
+                this.general = new Settings.General();
 
-            foreach (var x in this.DataGrid.Children.OfType<Grid>())
+            this.elements = new List<UIElement>()
             {
-                foreach (var y in x.Children.OfType<StackPanel>())
-                {
-                    foreach (UIElement item in y.Children)
-                    {
-                        foreach (var field in typeof(Settings.General).GetFields())
-                        {
-                            if (item is Toggle && (item as Toggle).Name == field.Name)
-                                (item as Toggle).IsOn = (bool)field.GetValue(this.general);
-                            else if (item is RadioButton)
-                            {
-                                RadioButton radio = (item as RadioButton);
+                this.HiddenFilesFolders,
+                this.OpenRegedit,
+                this.RestartExplorer,
+                this.ShowFileExtensions,
+                this.PositionTop,
+                this.PositionBottom
+            };
 
-                                if (field.Name == "position")
-                                {
-                                    string pos = (string)field.GetValue(this.general);
-
-                                    if (radio.Content.ToString() == pos)
-                                        radio.IsChecked = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            Settings.LoadUISettings<Settings.General>(this.elements, this.general);
         }
-        
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -59,30 +44,7 @@ namespace Bread_Tools
 
             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 
-            foreach (var x in this.DataGrid.Children.OfType<Grid>())
-            {
-                foreach (var y in x.Children.OfType<StackPanel>())
-                {
-                    foreach (UIElement item in y.Children)
-                    {
-                        foreach (var field in typeof(Settings.General).GetFields())
-                        {
-                            object boxed = this.general;
-                            if (item is Toggle && (item as Toggle).Name == field.Name)
-                                field.SetValue(boxed, (item as Toggle).IsOn);
-                            else if (item is RadioButton)
-                            {
-                                RadioButton radio = (item as RadioButton);
-
-                                if (radio.IsChecked == true && field.Name == "position")
-                                    field.SetValue(boxed, radio.Content.ToString());
-                            }
-                                
-                            this.general = (Settings.General)boxed;
-                        }
-                    }
-                }
-            }
+            Settings.SaveUISettings<Settings.General>(this.elements, this.general);
 
             if (result == MessageBoxResult.Yes)
             {
