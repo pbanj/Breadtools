@@ -1,23 +1,24 @@
-﻿using Bread_Tools.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+
+using Types = Bread_Tools.Resources.Types;
+using Bread_Tools.Resources;
 
 namespace Bread_Tools
 {
     public partial class GeneralPage : Page
     {
-        private Settings.General general;
+        private Types.GeneralTools.Settings settings;
         private List<UIElement> elements;
+
+        public List<UIElement> Elements => elements;
 
         public GeneralPage()
         {
             InitializeComponent();
 
-            if (Settings.HasSettings())
-                this.general = Settings.Data.general;
-            else
-                this.general = new Settings.General();
+            this.settings = Settings.Data.general;
 
             this.elements = new List<UIElement>()
             {
@@ -29,7 +30,7 @@ namespace Bread_Tools
                 this.PositionBottom
             };
 
-            Settings.LoadUISettings<Settings.General>(this.elements, this.general);
+            Settings.LoadUISettings<Types.GeneralTools.Settings>(this.elements, this.settings);
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -42,11 +43,11 @@ namespace Bread_Tools
 
             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 
-            Settings.SaveUISettings<Settings.General>(this.elements, this.general);
+            Settings.SaveUISettings<Types.GeneralTools.Settings>(this.elements, this.settings);
 
             if (result == MessageBoxResult.Yes)
             {
-                Settings.Data.general = this.general;
+                Settings.Data.general = this.settings;
                 Settings.SaveSettings();
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,58 +21,46 @@ namespace Bread_Tools.Resources
         private static string SAVE_DIRECTORY = APPDATA_DIRECTORY + "/Bread Tools";
         private static string SAVE_FILE = SAVE_DIRECTORY + "/Settings";
 
-        public struct General
-        {
-            public bool HiddenFilesFolders;
-            public bool OpenRegedit;
-            public bool RestartExplorer;
-            public bool ShowFileExtensions;
-
-            public string position;
-        };
-
-        public struct CommandLine
-        {
-            public bool OpenWSLHere;
-            public bool OpenCommandPromptHere;
-            public bool OpenAdminCommandPromptHere;
-            public bool OpenPowerShellHere;
-            public bool OpenAdminPowerShellHere;
-
-            public string position;
-        }
-
-        public struct Power
-        {
-            public bool Hibernate;
-            public bool Lock;
-            public bool Restart;
-            public bool ShutDown;
-            public bool Sleep;
-            public bool SwitchUser;
-
-            public string position;
-        }
-
-        public struct WindowsSettings
-        {
-            public bool MainSettings;
-            public bool NetworkInternet;
-            public bool AboutThisPC;
-            public bool WindowsUpdate;
-
-            public string position;
-        }
-
         public struct Info
         {
-            public General general;
-            public CommandLine command;
-            public Power power;
-            public WindowsSettings settings;
+            public Types.GeneralTools.Settings  general;
+            public Types.CommandTools.Settings  command;
+            public Types.PowerTools.Settings    power;
+            public Types.SettingsTools.Settings settings;
         };
 
         public static Info Data = new Info();
+
+        public static bool HavePageSettingsChanged<T>(List<UIElement> elements, dynamic structValue)
+        {
+            var info = typeof(T).GetFields();
+
+            foreach (UIElement item in elements)
+            {
+                foreach (var current in info)
+                {
+                    if (item is Toggle && (item as Toggle).Name == current.Name)
+                    {
+                        if ((item as Toggle).IsOn != (bool)current.GetValue(structValue))
+                            return true;
+                        else if (item is RadioButton)
+                        {
+                            if (current.Name != "position")
+                                continue;
+
+                            RadioButton radio = (item as RadioButton);
+
+                            string pos = (string)current.GetValue(structValue);
+
+                            if (radio.Content.ToString() != pos)
+                                return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
 
         public static void LoadUISettings<T>(List<UIElement> elements, dynamic structValue)
         {

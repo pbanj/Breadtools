@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+using Types = Bread_Tools.Resources.Types;
+
 namespace Bread_Tools
 {
     public partial class MainWindow : Window
@@ -83,14 +85,10 @@ namespace Bread_Tools
             Label label = panel.Children.OfType<Label>().First();
             label.FontWeight = FontWeights.Normal;
 
-            try
-            {
-                Rectangle rect = panel.Children.OfType<Rectangle>().First();
+            Rectangle? rect = panel.Children.OfType<Rectangle>().FirstOrDefault();
 
+            if (rect != null)
                 rect.Fill = Brushes.Transparent;
-            }
-            catch (Exception)
-            { }
         }
 
         private void SelectPanelItem(object sender, EventArgs e)
@@ -138,6 +136,8 @@ namespace Bread_Tools
 
         private void ApplySettings(object sender, MouseButtonEventArgs e)
         {
+            Settings.SaveSettings();
+            Registry.WriteToRegistry();
         }
     }
 }
