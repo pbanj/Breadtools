@@ -31,7 +31,11 @@
                 <fa5:SvgAwesome Icon="Brands_Windows" Width="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,7,0" />
                 <Label VerticalContentAlignment="Center" Content="PC Settings" HorizontalContentAlignment="Left" Background="Transparent" FontSize="18" Height="44" BorderBrush="Transparent" Padding="0" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,44,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="ApplySettings" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+            <StackPanel Orientation="Horizontal" Margin="0,44,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="ShowGlobalConfig" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <fa5:SvgAwesome Icon="Solid_Cog" Width="16" HorizontalAlignment="Center" Margin="11,0,7,0" UseLayoutRounding="False" VerticalAlignment="Center" />
+                <Label FontSize="18" Content="Settings" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="ApplySettings" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
                 <fa5:SvgAwesome Icon="Solid_SignOutAlt" Width="16" HorizontalAlignment="Center" Margin="11,0,7,0" UseLayoutRounding="False" VerticalAlignment="Center" />
                 <Label FontSize="18" Content="Apply Changes" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </StackPanel>

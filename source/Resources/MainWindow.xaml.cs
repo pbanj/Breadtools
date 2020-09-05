@@ -85,7 +85,7 @@ namespace Bread_Tools
             Label label = panel.Children.OfType<Label>().First();
             label.FontWeight = FontWeights.Normal;
 
-            Rectangle? rect = panel.Children.OfType<Rectangle>().FirstOrDefault();
+            var rect = panel.Children.OfType<Rectangle>().FirstOrDefault();
 
             if (rect != null)
                 rect.Fill = Brushes.Transparent;
@@ -134,10 +134,15 @@ namespace Bread_Tools
             this.SelectPanelItem(sender, e);
         }
 
+        private void ShowGlobalConfig(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
         private void ApplySettings(object sender, MouseButtonEventArgs e)
         {
-            Settings.SaveSettings();
-            Registry.WriteToRegistry();
+            //Settings.SaveSettings();
+            WinRegistry.WriteToRegistry();
         }
     }
 }

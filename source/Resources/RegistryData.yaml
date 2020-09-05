@@ -1,35 +1,43 @@
 ﻿general:
     - text: Regedit
-      icon: C:\\Windows\\regedit.exe
-      command: C:\\Windows\\regedit.exe /m
+      icon: C:\Windows\regedit.exe
+      path: Directory\ContextMenus\Tools\shell\1reg
+      command: C:\Windows\regedit.exe /m
       needsAdmin: false
-    - text: File Extensions
-      icon: Resources/Icons/file.ico
-      command: Resources/Scripts/File_Extensions.vbs
+    - text: Toggle File Extensions
+      icon: /Resources/Icons/file.ico
+      path: Directory\ContextMenus\Tools\\shell\3File Extensions
+      command: /Resources/Scripts/File_Extensions.vbs
       needsAdmin: true
-    - text: Hidden Files
-      icon: Resources/Icons/file.ico
-      command: "explorer /root, C:\\breadtools\\scripts\\Hidden_Files.vbs"
+    - text: Toggle Hidden Items
+      icon: /Resources/Icons/file.ico
+      path: Directory\ContextMenus\Tools\shell\4Hidden Files
+      command: "explorer /root, Resources\\Scripts\\Hidden_Files.vbs"
       needsAdmin: true
     - text: Restart Explorer
-      icon: C:\\Windows\\explorer.exe
-      command: 'C:\\Windows\\System32\\cmd.exe\" /c \"taskkill /f /im explorer.exe & start explorer.exe'
+      icon: C:\Windows\explorer.exe
+      path: Directory\ContextMenus\Tools\shell\5Restart Explorer
+      command: C:\\Windows\\System32\\cmd.exe /c "taskkill /f /im explorer.exe & start explorer.exe"
       needsAdmin: false
 
 settings:
     - text: Settings
       uri: "ms-settings:"
-      icon: Icons/settings.ico
-      command: \{556FF0D6-A1EE-49E5-9FA4-90AE116AD744\}
+      icon: /Resources/Icons/settings.ico
+      path: Directory\ContextMenus\Tools\settings\shell\1settings
+      command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Network & Internet
       uri: ms-settings:network
-      icon: Icons/network.ico
-      command: \{556FF0D6-A1EE-49E5-9FA4-90AE116AD744\}
+      icon: /Resources/Icons/network.ico
+      path: Directory\ContextMenus\Tools\settings\shell\2network
+      command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Windows Update
       uri: ms-settings:windowsupdate
-      icon: Icons/update.ico
-      command: \{556FF0D6-A1EE-49E5-9FA4-90AE116AD744\}
+      icon: /Resources/Icons/update.ico
+      path: Directory\ContextMenus\Tools\settings\shell\3Update
+      command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: System
       uri: ms-settings:display
-      icon: Icons/system.ico
-      command: \{556FF0D6-A1EE-49E5-9FA4-90AE116AD744\}
+      icon: /Resources/Icons/system.ico
+      path: Directory\ContextMenus\Tools\settings\shell\4System
+      command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"

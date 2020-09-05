@@ -25,6 +25,7 @@
         public struct Registry
         {
             public string text;
+            public string path;
             public string icon;
             public string command;
 
@@ -80,6 +81,12 @@
         }
 
         public struct Registry
-        { }
+        {
+            public string text;
+            public string uri;
+            public string icon;
+            public string path;
+            public string command;
+        }
     }
 }
