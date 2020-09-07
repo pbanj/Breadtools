@@ -1,6 +1,5 @@
 ﻿using Bread_Tools.Resources;
 using Bread_Tools.Resources.Pages;
-using MessagePack;
 using System;
 using System.Linq;
 using System.Security.Principal;
@@ -10,21 +9,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-using Types = Bread_Tools.Resources.Types;
+using System.IO;
+
+using MessagePack;
+using System.Collections.Generic;
 
 namespace Bread_Tools
 {
     public partial class MainWindow : Window
     {
-        private GeneralPage general;
-        private CommandPage command;
-        private PowerPage power;
-        private PCSettingsPage pcSettings;
+        List<Page> windowPages = new List<Page>()
+        {
+            new GeneralPage(),
+            new CommandPage(),
+            new PowerPage(),
+            new PCSettingsPage()
+        };
+
+        private readonly SettingsWindow settingsWindow;
 
         private string highLightColor = "#CFCFCF";
         private string unHighLightColor = "#E6E6E6";
-
-        private static string USERNAME = Environment.UserName;
 
         public static bool IsAdministrator()
         {
@@ -39,19 +44,16 @@ namespace Bread_Tools
         {
             InitializeComponent();
 
-            MessagePackSerializer.DefaultOptions = MessagePack.Resolvers.ContractlessStandardResolver.Options;
+            MessagePackSerializer.DefaultOptions = MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options;
 
             if (Settings.HasSettings())
                 Settings.LoadSettings();
 
             Settings.SaveSettings();
 
-            this.general = new GeneralPage();
-            this.command = new CommandPage();
+            this.settingsWindow = new SettingsWindow();
 
-            this.power = new PowerPage();
-            this.pcSettings = new PCSettingsPage();
-
+            // Open General by default
             StackPanel which = this.MainPanel.Children.OfType<StackPanel>().First();
             this.ShowGeneralPage(which, null);
         }
@@ -112,31 +114,32 @@ namespace Bread_Tools
 
         private void ShowGeneralPage(object sender, MouseButtonEventArgs e)
         {
-            this.PageContent.Content = this.general;
+            this.PageContent.Content = this.windowPages[0];
             this.SelectPanelItem(sender, e);
         }
 
         private void ShowCommandPage(object sender, MouseButtonEventArgs e)
         {
-            this.PageContent.Content = this.command;
+            this.PageContent.Content = this.windowPages[1];
             this.SelectPanelItem(sender, e);
         }
 
         private void ShowPowerPage(object sender, MouseButtonEventArgs e)
         {
-            this.PageContent.Content = this.power;
+            this.PageContent.Content = this.windowPages[2];
             this.SelectPanelItem(sender, e);
         }
 
         private void ShowPCSettingsPage(object sender, MouseButtonEventArgs e)
         {
-            this.PageContent.Content = this.pcSettings;
+            this.PageContent.Content = this.windowPages[3];
             this.SelectPanelItem(sender, e);
         }
 
         private void ShowGlobalConfig(object sender, MouseButtonEventArgs e)
         {
-
+            this.settingsWindow.Owner = this;
+            this.settingsWindow.ShowDialog();
         }
 
         private void ApplySettings(object sender, MouseButtonEventArgs e)

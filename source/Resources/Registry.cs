@@ -13,6 +13,7 @@ namespace Bread_Tools.Resources
     static class WinRegistry
     {
         private static readonly string REGEDIT_INFO = "Resources/RegistryData.yaml";
+        private static string USERNAME = Environment.UserName;
 
         struct Regedit
         {
@@ -54,7 +55,6 @@ namespace Bread_Tools.Resources
 
         private static void ApplyRegistryChanges(string name)
         {
-            Console.WriteLine(name);
             switch (name)
             {
                 case "general":
@@ -62,6 +62,9 @@ namespace Bread_Tools.Resources
                     /* Thanks, I hate it too */
                     foreach (var registryData in REGEDIT.general)
                     {
+                        if (Settings.GetValue<Types.GeneralTools.Settings>(registryData.name, Settings.Data.general) == false)
+                            continue;
+
                         RegistryKey mainKey = Registry.ClassesRoot.CreateSubKey(registryData.path, true);
 
                         ApplyGeneralRegistryInformation(mainKey, registryData);
@@ -77,7 +80,12 @@ namespace Bread_Tools.Resources
 
                         // If the command is a script, prepend the current directory
                         if (command.Contains(".vbs"))
-                            command = CURRENT_DIRECTORY + registryData.command;
+                        {
+                            if (registryData.needsAdmin)
+                                command = $"explorer /root,{CURRENT_DIRECTORY + registryData.command}";
+                            else
+                                command = CURRENT_DIRECTORY + registryData.command;
+                        }
 
                         commandKey.SetValue("", command);
 
@@ -130,8 +138,14 @@ namespace Bread_Tools.Resources
             {
                 key.SetValue("", "Settings");
 
-                key.SetValue("icon", CURRENT_DIRECTORY + "/Resources/Icons/settings.ico");
+                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/settings.ico");
                 key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\settings");
+
+                string position = (Settings.Data.settings.Position == 1) ? "top" : "bottom";
+
+                if (Settings.Data.settings.Position != 0)
+                    key.SetValue("Position", position);
+               
             }
             else if (keyName.Contains("2sterm"))
             {
@@ -139,6 +153,11 @@ namespace Bread_Tools.Resources
 
                 key.SetValue("icon", CURRENT_DIRECTORY + "/Resources/Icons/terminal.ico");
                 key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\winterm");
+
+                string position = (Settings.Data.command.Position == 1) ? "top" : "bottom";
+
+                if (Settings.Data.settings.Position != 0)
+                    key.SetValue("Position", position);
             }
 
             key.Close();

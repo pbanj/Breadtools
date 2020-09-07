@@ -1,4 +1,6 @@
-﻿namespace Bread_Tools.Resources.Types
+﻿using System.Reflection.Emit;
+
+namespace Bread_Tools.Resources.Types
 {
     namespace GeneralTools
     {
@@ -7,14 +9,14 @@
         ** Each variable name must match their toggle switch
         ** in the respective XAML layout
         */
-        public struct Settings
+        public class Settings
         {
-            public bool HiddenFilesFolders;
-            public bool OpenRegedit;
-            public bool RestartExplorer;
-            public bool ShowFileExtensions;
+            public bool HiddenFilesFolders { get; set; }
+            public bool OpenRegedit        { get; set; }
+            public bool RestartExplorer    { get; set; }
+            public bool ShowFileExtensions { get; set; }
 
-            public string position;
+            public int Position { get; set; }
         };
 
         /*
@@ -25,6 +27,7 @@
         public struct Registry
         {
             public string text;
+            public string name;
             public string path;
             public string icon;
             public string command;
@@ -35,16 +38,16 @@
 
     namespace PowerTools
     {
-        public struct Settings
+        public class Settings
         {
-            public bool Hibernate;
-            public bool Lock;
-            public bool Restart;
-            public bool ShutDown;
-            public bool Sleep;
-            public bool SwitchUser;
+            public bool Hibernate  { get; set; }
+            public bool Lock       { get; set; }
+            public bool Restart    { get; set; }
+            public bool ShutDown   { get; set; }
+            public bool Sleep      { get; set; }
+            public bool SwitchUser { get; set; }
 
-            public string position;
+            public int position { get; set; }
         }
 
         public struct Registry
@@ -53,15 +56,15 @@
 
     namespace CommandTools
     {
-        public struct Settings
+        public class Settings
         {
-            public bool OpenWSLHere;
-            public bool OpenCommandPromptHere;
-            public bool OpenAdminCommandPromptHere;
-            public bool OpenPowerShellHere;
-            public bool OpenAdminPowerShellHere;
+            public bool OpenWSLHere                { get; set; }
+            public bool OpenCommandPromptHere      { get; set; }
+            public bool OpenAdminCommandPromptHere { get; set; }
+            public bool OpenPowerShellHere         { get; set; }
+            public bool OpenAdminPowerShellHere    { get; set; }
 
-            public string position;
+            public int Position { get; set; }
         }
 
         public struct Registry
@@ -70,23 +73,34 @@
 
     namespace SettingsTools
     {
-        public struct Settings
+        public class Settings
         {
-            public bool MainSettings;
-            public bool NetworkInternet;
-            public bool AboutThisPC;
-            public bool WindowsUpdate;
+            public bool MainSettings    { get; set; }
+            public bool NetworkInternet { get; set; }
+            public bool AboutThisPC     { get; set; }
+            public bool WindowsUpdate   { get; set; }
 
-            public string position;
+            public int Position { get; set; }
         }
 
         public struct Registry
         {
             public string text;
+            public string name;
             public string uri;
             public string icon;
             public string path;
             public string command;
+        }
+    }
+
+    namespace Global
+    {
+        public class Settings
+        {
+            public string IconTheme { get; set; }
+
+            public int Position { get; set; }
         }
     }
 }

@@ -1,55 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 
-using Types = Bread_Tools.Resources.Types;
-using Bread_Tools.Resources;
-
-namespace Bread_Tools
+namespace Bread_Tools.Resources.Pages
 {
     public partial class GeneralPage : Page
     {
-        private Types.GeneralTools.Settings settings;
-        private List<UIElement> elements;
-
-        public List<UIElement> Elements => elements;
-
         public GeneralPage()
         {
             InitializeComponent();
 
-            this.settings = Settings.Data.general;
+            this.HiddenFilesFolders.Loaded += this.LoadField;
+            this.OpenRegedit.Loaded += this.LoadField;
+            this.ShowFileExtensions.Loaded += this.LoadField;
+            this.RestartExplorer.Loaded += this.LoadField;
 
-            this.elements = new List<UIElement>()
-            {
-                this.HiddenFilesFolders,
-                this.OpenRegedit,
-                this.RestartExplorer,
-                this.ShowFileExtensions,
-                this.PositionTop,
-                this.PositionBottom
-            };
+            this.Position.Loaded += this.LoadField;
 
-            Settings.LoadUISettings<Types.GeneralTools.Settings>(this.elements, this.settings);
+            ////////////////////
+
+            this.HiddenFilesFolders.Switched += this.SaveField;
+            this.OpenRegedit.Switched += this.SaveField;
+            this.ShowFileExtensions.Switched += this.SaveField;
+            this.RestartExplorer.Switched += this.SaveField;
+
+            this.Position.SelectionChanged += this.SaveField;
         }
+
+        private void SaveField(object sender, EventArgs e)
+            => Settings.SaveUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
+
+        private void LoadField(object sender, EventArgs e)
+            => Settings.LoadUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            string messageBoxText = "Do you want to save changes?";
-            string caption = "Bread Tools";
-
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-
-            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-
-            Settings.SaveUISettings<Types.GeneralTools.Settings>(this.elements, this.settings);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                Settings.Data.general = this.settings;
-                Settings.SaveSettings();
-            }
-        }
+            => Settings.SaveSettings();
     }
 }

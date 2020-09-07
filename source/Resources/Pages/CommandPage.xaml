@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Bread_Tools.Resources.Pages" xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
+    xmlns:local="clr-namespace:Bread_Tools.Resources.Pages" xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch" xmlns:System="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
     Title="Command"
@@ -22,10 +22,51 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackPanel>
-                    <Label x:Name="label" HorizontalContentAlignment="Left" Content="Open Bash Here" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
+                    <Label HorizontalContentAlignment="Left" Content="Open Bash Here" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
                     <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Opens a Windows Subsystem for Linux window in the " /><LineBreak /><Run Text="current directory." /></TextBlock>
-                    <ToggleSwitch:ToggleSwitch Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                    <ToggleSwitch:ToggleSwitch Name="OpenWSLHere" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <Label HorizontalContentAlignment="Left" Content="Open Command Prompt Here" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0"/>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Opens a Command Prompt window in the "/><LineBreak /><Run Text="current directory." /></TextBlock>
+                    <ToggleSwitch:ToggleSwitch ButtonBase.Click="OpenCommandPromptHere_Click" Name="OpenCommandPromptHere" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel>
+                    <Label HorizontalContentAlignment="Left" Content="Open PowerShell Here" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0"/>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Opens a Command Prompt window in the "/><LineBreak /><Run Text="current directory." /></TextBlock>
+                    <ToggleSwitch:ToggleSwitch ButtonBase.Click="OpenPowerShellHere_Click" Name="OpenPowerShellHere" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel>
+                    <Label Content="Menu Position" FontSize="16pt" FontWeight="Bold" Margin="12,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"></Label>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="The position in the Context Menu for this section to display at." /></TextBlock>
+                    <ComboBox BorderThickness="0" Background="Transparent" x:Name="Position" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="12,8,0,8" IsSynchronizedWithCurrentItem="True" SelectedIndex="0" BorderBrush="#00000000" FontSize="16" MinWidth="142">
+                        <System:String>Default (Middle)</System:String>
+                        <System:String>Top</System:String>
+                        <System:String>Bottom</System:String>
+                        <ComboBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="0, 0, 2, 2"/>
+                            </Style>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Button Name="SaveButton" Content="Save" Width="96" HorizontalAlignment="Right" Margin="0,0,8,8" BorderThickness="0"
+                            Foreground="white" Cursor="Hand" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                            Background="CornflowerBlue" FontSize="12pt" Padding="1,1,1,3" Click="SaveButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="2" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Grid>
     </ScrollViewer>

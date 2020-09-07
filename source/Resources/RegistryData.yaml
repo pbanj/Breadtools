@@ -1,42 +1,50 @@
 ﻿general:
     - text: Regedit
-      icon: C:\Windows\regedit.exe
+      name: OpenRegedit
+      icon: C:/Windows/regedit.exe
       path: Directory\ContextMenus\Tools\shell\1reg
-      command: C:\Windows\regedit.exe /m
+      command: C:/Windows/regedit.exe /m
       needsAdmin: false
     - text: Toggle File Extensions
+      name: ShowFileExtensions
       icon: /Resources/Icons/file.ico
-      path: Directory\ContextMenus\Tools\\shell\3File Extensions
+      path: Directory\ContextMenus\Tools\shell\3File Extensions
       command: /Resources/Scripts/File_Extensions.vbs
       needsAdmin: true
     - text: Toggle Hidden Items
+      name: HiddenFilesFolders
       icon: /Resources/Icons/file.ico
       path: Directory\ContextMenus\Tools\shell\4Hidden Files
-      command: "explorer /root, Resources\\Scripts\\Hidden_Files.vbs"
+      command: /Resources/Scripts/Hidden_Files.vbs
       needsAdmin: true
     - text: Restart Explorer
-      icon: C:\Windows\explorer.exe
+      name: RestartExplorer
+      icon: C:/Windows/explorer.exe
       path: Directory\ContextMenus\Tools\shell\5Restart Explorer
-      command: C:\\Windows\\System32\\cmd.exe /c "taskkill /f /im explorer.exe & start explorer.exe"
+      command: C:/Windows/System32/cmd.exe /c "taskkill /f /im explorer.exe & start explorer.exe"
       needsAdmin: false
 
 settings:
     - text: Settings
+      name: MainSettings
       uri: "ms-settings:"
       icon: /Resources/Icons/settings.ico
       path: Directory\ContextMenus\Tools\settings\shell\1settings
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Network & Internet
+      name: NetworkInternet
       uri: ms-settings:network
       icon: /Resources/Icons/network.ico
       path: Directory\ContextMenus\Tools\settings\shell\2network
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Windows Update
+      name: WindowsUpdate
       uri: ms-settings:windowsupdate
       icon: /Resources/Icons/update.ico
       path: Directory\ContextMenus\Tools\settings\shell\3Update
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: System
+      name: AboutThisPC
       uri: ms-settings:display
       icon: /Resources/Icons/system.ico
       path: Directory\ContextMenus\Tools\settings\shell\4System

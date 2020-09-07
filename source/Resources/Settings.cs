@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Windows;
+using System.Reflection;
 using System.Windows.Controls;
 
-using YamlDotNet.Serialization;
-
+using MessagePack;
 using Toggle = ToggleSwitch.ToggleSwitch;
 
 namespace Bread_Tools.Resources
@@ -27,111 +25,127 @@ namespace Bread_Tools.Resources
             public Types.CommandTools.Settings  command;
             public Types.PowerTools.Settings    power;
             public Types.SettingsTools.Settings settings;
+
+            public Types.Global.Settings        globals;
         };
 
-        public static Info Data = new Info();
-
-        public static bool HavePageSettingsChanged<T>(List<UIElement> elements, dynamic structValue)
+        public static Info Data = new Info()
         {
-            var info = typeof(T).GetFields();
+            general = new Types.GeneralTools.Settings(),
+            command = new Types.CommandTools.Settings(),
+            power = new Types.PowerTools.Settings(),
+            settings = new Types.SettingsTools.Settings(),
+            globals = new Types.Global.Settings()
+        };
 
-            foreach (UIElement item in elements)
+        public static void LoadUISettings<T>(object sender, dynamic structValue)
+        {
+            string name = "";
+
+            dynamic element;
+            if (sender is Toggle)
             {
-                foreach (var current in info)
+                element = (sender as Toggle);
+                name = element.Name;
+            }
+            else if (sender is ComboBox)
+            {
+                element = (sender as ComboBox);
+                name = element.Name;
+            }
+
+            var properties = typeof(T).GetProperties();
+
+            foreach (var property in properties)
+            {
+                if (property.Name == name || name.Contains(property.Name))
                 {
-                    if (item is Toggle && (item as Toggle).Name == current.Name)
-                    {
-                        if ((item as Toggle).IsOn != (bool)current.GetValue(structValue))
-                            return true;
-                        else if (item is RadioButton)
-                        {
-                            if (current.Name != "position")
-                                continue;
-
-                            RadioButton radio = (item as RadioButton);
-
-                            string pos = (string)current.GetValue(structValue);
-
-                            if (radio.Content.ToString() != pos)
-                                return true;
-                        }
-                    }
+                    if (sender is Toggle)
+                        (sender as Toggle).IsOn = (bool)property.GetValue(structValue);
+                    else if (sender is ComboBox)
+                        (sender as ComboBox).SelectedIndex = (int)property.GetValue(structValue);
                 }
             }
 
-            return false;
+            DebugStruct<T>(structValue);
         }
 
-        public static void LoadUISettings<T>(List<UIElement> elements, dynamic structValue)
+        private static void DebugStruct<T>(dynamic structValue)
         {
-            var info = typeof(T).GetFields();
-            
-            foreach (UIElement item in elements)
-            {
-                foreach (var field in info)
-                {
-                    if (item is Toggle && (item as Toggle).Name == field.Name)
-                        (item as Toggle).IsOn = (bool)field.GetValue(structValue);
-                    else if (item is RadioButton)
-                    {
-                        if (field.Name != "position")
-                            continue;
+            var fields = typeof(T).GetProperties();
 
-                        RadioButton radio = (item as RadioButton);
-
-                        string pos = (string)field.GetValue(structValue);
-
-                        if (radio.Content.ToString() == pos)
-                            radio.IsChecked = true;
-                    }
-                }
-            }
+            foreach (var field in fields)
+                Console.WriteLine(field.Name + ": " + field.GetValue(structValue));
         }
 
-        public static void SaveUISettings<T>(List<UIElement> elements, dynamic structValue)
+        public static dynamic GetValue<T>(string name, dynamic value)
         {
-            var info = typeof(T).GetFields();
+            var fields = typeof(T).GetProperties();
+            dynamic ret = false;
 
-            foreach (UIElement item in elements)
+            foreach (var field in fields)
             {
-                foreach (var field in info)
+                if (field.Name == name)
                 {
-                    object boxed = structValue;
-
-                    if (item is Toggle && (item as Toggle).Name == field.Name)
-                        field.SetValue(boxed, (item as Toggle).IsOn);
-                    else if (item is RadioButton)
-                    {
-                        if (field.Name != "position")
-                            continue;
-
-                        RadioButton radio = (item as RadioButton);
-
-                        if (radio.IsChecked == true)
-                            field.SetValue(boxed, radio.Content.ToString());
-                    }
-
-                    structValue = (T)boxed;
+                    ret = field.GetValue(value);
+                    break;
                 }
             }
+
+            Console.WriteLine(name + ": " + ret.ToString());
+
+            return ret;
+        }
+
+        public static void SaveUISettings<T>(object sender, dynamic structValue)
+        {
+            string name = "";
+
+            dynamic element;
+            dynamic value = false;
+
+            if (sender is Toggle)
+            {
+                element = (sender as Toggle);
+                value = element.IsOn;
+                name = element.Name;
+            }
+            else if (sender is ComboBox)
+            {
+                element = (sender as ComboBox);
+                value = element.SelectedIndex;
+                name = element.Name;
+            }
+
+            var properties = typeof(T).GetProperties();
+
+            foreach (var property in properties)
+            {
+                if (property.Name == name || name.Contains(property.Name))
+                {
+                    if (value is bool boolean)
+                        property.SetValue(structValue, boolean);
+                    else if (value is int number)
+                        property.SetValue(structValue, number);
+                }
+            }
+
+            DebugStruct<T>(structValue);
         }
 
         public static bool HasSettings()
-            => File.Exists(SAVE_FILE);
-
-        public static void LoadSettings()
-        {
-            var deserializer = new DeserializerBuilder().Build();
-            Data = deserializer.Deserialize<Info>(File.ReadAllText(SAVE_FILE));
-        }
-
-        public static void SaveSettings()
         {
             if (!Directory.Exists(SAVE_DIRECTORY))
                 Directory.CreateDirectory(SAVE_DIRECTORY);
 
-            var serializer = new SerializerBuilder().Build();
-            File.WriteAllText(SAVE_FILE, "# DO NOT EDIT THIS FILE\n\n" + serializer.Serialize(Data));
+            return File.Exists(SAVE_FILE);
         }
+
+        public static void LoadSettings()
+            => Data = MessagePackSerializer.Deserialize<Info>(File.ReadAllBytes(SAVE_FILE));
+        
+
+        public static void SaveSettings()
+            => File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
     }
 }
