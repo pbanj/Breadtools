@@ -51,11 +51,51 @@ command:
       path: Directory\ContextMenus\Tools\winterm\shell\5bash
       command: wt.exe -p "Ubuntu"
 
+power:
+    - text: Lock this PC
+      name: Lock
+      icon: /Resources/Icons/Power/lock.ico
+      path: Directory\ContextMenus\Tools\power\shell\1lock
+      command: Rundll32 User32.dll,LockWorkStation
+    - text: Log Off
+      name: LogOff
+      icon: /Resources/Icons/Power/logoff.ico
+      path: Directory\ContextMenus\Tools\power\shell\2logoff
+      command: Shutdown -l
+    - text: Restart
+      name: Restart
+      icon: /Resources/Icons/Power/restart.ico
+      path: Directory\ContextMenus\Tools\power\shell\3restart
+      command: Shutdown -r -f -t 00
+    - text: Restart with Boot Options
+      name: RestartWithBootOptions
+      icon: /Resources/Icons/Power/restart.ico
+      path: Directory\ContextMenus\Tools\power\shell\4restartboot
+      command: Shutdown -r -o -f -t 00
+    - text: Shut Down
+      name: ShutDown
+      icon: /Resources/Icons/Power/power.ico
+      path: Directory\ContextMenus\Tools\power\shell\5shutdown
+      command: Shutdown -s -f -t 00
+    - text: Sleep this PC
+      name: Sleep
+      icon: /Resources/Icons/Power/sleep.ico
+      path: Directory\ContextMenus\Tools\power\shell\6sleep
+      command: Rundll32 powrprof.dll,SetSuspendState Sleep
+    - text: Hibernate
+      name: Hibernate
+      icon: /Resources/Icons/Power/hibernate.ico
+      path: Directory\ContextMenus\Tools\power\shell\7hibernate
+      command: Shutdown -h
+    - text: Restart
+      name: Restart
+    - text: Switch User
+
 settings:
     - text: Settings
       name: MainSettings
       uri: "ms-settings:"
-      icon: /Resources/Icons/settings.ico
+      icon: /Resources/Icons/Settings/settings.ico
       path: Directory\ContextMenus\Tools\settings\shell\1settings
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Network & Internet

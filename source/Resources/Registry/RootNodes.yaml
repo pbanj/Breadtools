@@ -1,1 +1,29 @@
-﻿
+﻿# path specifies where the sub-items will go
+# shell specifies the root item's location
+
+nodes:
+    - path: Directory\Background\shell\Tools
+      shell:
+      icon: /Resources/Icons/tools.ico
+      subcommand: Directory\ContextMenus\Tools
+      text:
+    - path: Directory\ContextMenus\Tools
+      shell: Directory\ContextMenus\Tools\shell
+      icon:
+      text:
+      subcommand:
+    - path:  Directory\ContextMenus\Tools\winterm\shell
+      shell: Directory\ContextMenus\Tools\shell\2sterm
+      icon: /Resources/Icons/Command/terminal.ico
+      subcommand: Directory\ContextMenus\Tools\winterm
+      text: Command Line
+    - path:  Directory\ContextMenus\Tools\settings\shell
+      shell: Directory\ContextMenus\Tools\shell\6Settings
+      icon: /Resources/Icons/Settings/settings.ico
+      subcommand: Directory\ContextMenus\Tools\settings
+      text: Windows Settings
+    - path:  Directory\ContextMenus\Tools\power\shell
+      shell: Directory\ContextMenus\Tools\shell\7power
+      icon: /Resources/Icons/Power/power.ico
+      subcommand: Directory\ContextMenus\Tools\power
+      text: Power

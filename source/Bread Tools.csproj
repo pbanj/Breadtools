@@ -247,6 +247,27 @@
     <Resource Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Icons\Power\hibernate.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\lock.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\logoff.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\power.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\restart.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\sleep.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Power\switch.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Utility\file.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -273,7 +294,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Registry\RootNodes.yaml" />
+    <EmbeddedResource Include="Resources\Registry\RootNodes.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Resources\Scripts\File_Extensions.vbs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -1,11 +1,10 @@
-﻿using Microsoft.Win32;
+﻿using Bread_Tools.Resources.Types;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Windows.Documents;
 using YamlDotNet.Serialization;
 
 namespace Bread_Tools.Resources
@@ -13,35 +12,29 @@ namespace Bread_Tools.Resources
     static class WinRegistry
     {
         private static readonly string REGEDIT_INFO  = "Resources/Registry/Descendants.yaml";
-        private static readonly string REGEDIT_ROOTS = "Resources/Registry/RootNodes.yaml"
+        private static readonly string REGEDIT_ROOTS = "Resources/Registry/RootNodes.yaml";
 
         private static string USERNAME = Environment.UserName;
 
         struct Regedit
         {
-            public Types.GeneralTools.Registry[]  general;
+            public Types.GeneralTools.Registry[] general;
             public Types.SettingsTools.Registry[] settings;
-            public Types.CommandTools.Registry[]  command;
+            public Types.CommandTools.Registry[] command;
+            public Types.PowerTools.Registry[] power;
         };
 
-        static IDeserializer deserializer = new DeserializerBuilder().Build();
+        struct Nodes
+        {
+            public RootNodes[] nodes;
+        }
+
+        static readonly IDeserializer deserializer = new DeserializerBuilder().Build();
+
         static Regedit REGEDIT = deserializer.Deserialize<Regedit>(File.ReadAllText(REGEDIT_INFO));
+        static Nodes RootNodes = deserializer.Deserialize<Nodes>(File.ReadAllText(REGEDIT_ROOTS));
 
         private static string CURRENT_DIRECTORY = Directory.GetCurrentDirectory();
-
-        private static string ROOT_TOOLS_PATH = @"Directory\Background\shell\Tools";
-        private static string EXTENDED_CMD_KEY = @"\Directory\ContextMenus\Tools";
-        private static string ROOT_TOOLS_ICON = CURRENT_DIRECTORY +  @"\Resources\Icons\tools.ico";
-        
-        static List<string> ROOT_NODES = new List<string>()
-        {
-            @"Directory\ContextMenus\Tools",
-            @"Directory\ContextMenus\Tools\settings\shell",
-            @"Directory\ContextMenus\Tools\shell",
-            @"Directory\ContextMenus\Tools\winterm\shell",
-            @"Directory\ContextMenus\Tools\shell\6Settings",
-            @"Directory\ContextMenus\Tools\shell\2sterm"
-        };
 
         private static void ApplyGeneralRegistryInformation(RegistryKey mainKey, dynamic registryData)
         {
@@ -125,7 +118,25 @@ namespace Bread_Tools.Resources
                     }
                     break;
                 }
+                case "power":
+                {
+                    foreach (var registryData in REGEDIT.power)
+                    {
+                        if (Settings.GetValue<Types.PowerTools.Settings>(registryData.name, Settings.Data.power) == false)
+                            continue;
 
+                        RegistryKey mainKey = Registry.ClassesRoot.CreateSubKey(registryData.path, true);
+
+                        ApplyGeneralRegistryInformation(mainKey, registryData);
+
+                        RegistryKey commandKey = mainKey.CreateSubKey("command", true);
+                        commandKey.SetValue("", registryData.command);
+
+                        mainKey.Close();
+                        commandKey.Close();
+                    }
+                    break;
+                }
                 case "settings":
                 {
                     foreach (var registryData in REGEDIT.settings)
@@ -148,71 +159,71 @@ namespace Bread_Tools.Resources
             }
         }
 
-        private static void  UninstallToolsMenu()
+        public static void UninstallRemoveRegistryData()
         {
-            if (Registry.ClassesRoot.OpenSubKey(ROOT_TOOLS_PATH) == null)
-                return;
+            // TO DO: Warning dialog, check if anything *was* installed using Settings
 
-            Registry.ClassesRoot.DeleteSubKeyTree(ROOT_TOOLS_PATH);
-            Registry.ClassesRoot.DeleteSubKeyTree(ROOT_NODES[0]);
+            Registry.ClassesRoot.DeleteSubKeyTree(RootNodes.nodes[1].path);
+            Registry.ClassesRoot.DeleteSubKey(RootNodes.nodes[0].path);
         }
 
-        private static void CreateRootNode(string keyName)
+        private static bool ShouldCreateSection(string text)
         {
-            if (Registry.ClassesRoot.OpenSubKey(keyName) == null)
-                return;
+            bool result = false;
 
-            RegistryKey key = Registry.ClassesRoot.CreateSubKey(keyName, true);
-
-            /* Gross, but meh */
-            if (keyName.Contains("6Settings"))
+            switch (text)
             {
-                key.SetValue("", "Settings");
-
-                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/Settings/settings.ico");
-                key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\settings");
-
-                string position = (Settings.Data.settings.Position == 1) ? "top" : "bottom";
-
-                if (Settings.Data.settings.Position != 0)
-                    key.SetValue("Position", position);
-               
-            }
-            else if (keyName.Contains("2sterm"))
-            {
-                key.SetValue("", "Command Line");
-
-                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/Command/terminal.ico");
-                key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\winterm");
-
-                string position = (Settings.Data.command.Position == 1) ? "top" : "bottom";
-
-                if (Settings.Data.settings.Position != 0)
-                    key.SetValue("Position", position);
+                case "Command Line":
+                {
+                    result = typeof(Types.CommandTools.Settings).GetProperties().Any(x => 
+                        (bool)x.GetValue(Settings.Data.command) != false);
+                    break;
+                }
+                case "Windows Settings":
+                {
+                    result = typeof(Types.SettingsTools.Settings).GetProperties().Any(x =>
+                        (bool)x.GetValue(Settings.Data.settings) != false);
+                    break;
+                }
+                case "Power":
+                {
+                    result = typeof(Types.PowerTools.Settings).GetProperties().Any(x =>
+                        (bool)x.GetValue(Settings.Data.power) != false);
+                    break;
+                }
+                default:
+                    break;
             }
 
-            key.Close();
+            Console.Write(text + ":" + result);
+
+            return result;
         }
 
         public static void WriteToRegistry()
         {
-            if (Registry.ClassesRoot.OpenSubKey(ROOT_TOOLS_PATH) == null)
+            foreach (var nodeData in RootNodes.nodes)
             {
-                RegistryKey TOOLS_ROOT = Registry.ClassesRoot.CreateSubKey(ROOT_TOOLS_PATH, true);
+                RegistryKey mainKey = Registry.ClassesRoot.CreateSubKey(nodeData.path, true);
 
-                TOOLS_ROOT.SetValue("ExtendedSubCommandsKey", EXTENDED_CMD_KEY);
-                TOOLS_ROOT.SetValue("Icon", ROOT_TOOLS_ICON);
+                if (!string.IsNullOrEmpty(nodeData.shell))
+                {
+                    RegistryKey shellKey = Registry.ClassesRoot.CreateSubKey(nodeData.shell, true);
 
-                string position = (Settings.Data.globals.Position == 1) ? "top" : "bottom";
+                    if (!string.IsNullOrEmpty(nodeData.text))
+                        shellKey.SetValue("", nodeData.text);
 
-                if (Settings.Data.settings.Position != 0)
-                    TOOLS_ROOT.SetValue("Position", position);
+                    if (!string.IsNullOrEmpty(nodeData.icon))
+                        shellKey.SetValue("Icon", CURRENT_DIRECTORY + nodeData.icon);
 
-                TOOLS_ROOT.Close();
+                    if (!string.IsNullOrEmpty(nodeData.subcommand))
+                        shellKey.SetValue("ExtendedSubCommandsKey", nodeData.subcommand);
+
+                    shellKey.Close();
+                }
+
+                mainKey.Close();
             }
-
-            foreach (string item in ROOT_NODES)
-                CreateRootNode(item);
 
             FieldInfo[] info = typeof(Regedit).GetFields();
 

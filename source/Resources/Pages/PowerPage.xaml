@@ -21,6 +21,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackPanel>
@@ -32,39 +34,54 @@
             <Grid Grid.Row="1">
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Lock this PC" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into hibernation." /></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Lock your PC." /></TextBlock>
                     <ToggleSwitch:ToggleSwitch Name="Lock" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Restart this PC" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into hibernation." /></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Restart your PC to free up resources." /></TextBlock>
                     <ToggleSwitch:ToggleSwitch Name="Restart" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Shut Down this PC" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into hibernation." /></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap">Power down your PC <Hyperlink NavigateUri="https://images3.memedroid.com/images/UPLOADED167/5b0daf17cbffb.jpeg" RequestNavigate="Hyperlink_RequestNavigate">
+                        for the time being.</Hyperlink></TextBlock>
                     <ToggleSwitch:ToggleSwitch Name="ShutDown" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="4">
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Sleep this PC" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into hibernation." /></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into sleep." /></TextBlock>
                     <ToggleSwitch:ToggleSwitch Name="Sleep" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="5">
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Switch User" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Put your PC into hibernation." /></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Switch the current User." /></TextBlock>
                     <ToggleSwitch:ToggleSwitch Name="SwitchUser" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="6">
+                <StackPanel>
+                    <Label HorizontalContentAlignment="Left" Content="Log Off User" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Log off from Windows." /></TextBlock>
+                    <ToggleSwitch:ToggleSwitch Name="LogOff" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="7">
+                <StackPanel>
+                    <Label HorizontalContentAlignment="Left" Content="Restart With Boot Options" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Restart into Troubleshooting Mode with Advanced Options." /></TextBlock>
+                    <ToggleSwitch:ToggleSwitch Name="RestartWithBootOptions" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="8">
                 <StackPanel>
                     <Label Content="Menu Position" FontSize="16pt" FontWeight="Bold" Margin="12,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"></Label>
                     <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="The position in the Context Menu for this section to display at." /></TextBlock>
@@ -80,7 +97,7 @@
                     </ComboBox>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="7">
+            <Grid Grid.Row="9">
                 <Button Name="SaveButton" Content="Save" Width="96" HorizontalAlignment="Right" Margin="0,0,8,8" BorderThickness="0"
                             Foreground="white" Cursor="Hand" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                             Background="CornflowerBlue" FontSize="12pt" Padding="1,1,1,3" Click="SaveButton_Click">

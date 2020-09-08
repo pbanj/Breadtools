@@ -46,12 +46,20 @@ namespace Bread_Tools.Resources.Types
             public bool ShutDown   { get; set; }
             public bool Sleep      { get; set; }
             public bool SwitchUser { get; set; }
+            public bool LogOff     { get; set; }
+            public bool RestartWithBootOptions { get; set; }
 
             public int Position { get; set; }
         }
 
         public struct Registry
-        { }
+        {
+            public string text;
+            public string name;
+            public string icon;
+            public string path;
+            public string command;
+        }
     }
 
     namespace CommandTools
@@ -108,5 +116,14 @@ namespace Bread_Tools.Resources.Types
 
             public int Position { get; set; }
         }
+    }
+
+    class RootNodes
+    {
+        public string path;
+        public string shell;
+        public string icon;
+        public string text;
+        public string subcommand;
     }
 }

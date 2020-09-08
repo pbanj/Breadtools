@@ -14,6 +14,7 @@ using System.IO;
 using MessagePack;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Bread_Tools.Resources.Types.CommandTools;
 
 namespace Bread_Tools
 {
@@ -209,5 +210,8 @@ namespace Bread_Tools
             //Settings.SaveSettings();
             WinRegistry.WriteToRegistry();
         }
+
+        private void UninstallTools(object sender, MouseButtonEventArgs e)
+            => WinRegistry.RemoveRegistryData();
     }
 }

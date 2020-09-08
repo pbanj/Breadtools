@@ -142,7 +142,7 @@ namespace Bread_Tools.Resources
         public static void SaveSettings()
         {
             File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
-            DebugStruct<Types.CommandTools.Settings>(Data.command);
+            DebugStruct<Types.PowerTools.Settings>(Data.power);
         }
     }
 }
