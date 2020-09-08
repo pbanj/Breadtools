@@ -47,7 +47,7 @@ namespace Bread_Tools.Resources.Types
             public bool Sleep      { get; set; }
             public bool SwitchUser { get; set; }
 
-            public int position { get; set; }
+            public int Position { get; set; }
         }
 
         public struct Registry
@@ -68,7 +68,13 @@ namespace Bread_Tools.Resources.Types
         }
 
         public struct Registry
-        { }
+        {
+            public string text;
+            public string name;
+            public string icon;
+            public string path;
+            public string command;
+        }
     }
 
     namespace SettingsTools

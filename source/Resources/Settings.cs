@@ -15,9 +15,9 @@ namespace Bread_Tools.Resources
 
     internal static class Settings
     {
-        private static string APPDATA_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        private static string SAVE_DIRECTORY = APPDATA_DIRECTORY + "/Bread Tools";
-        private static string SAVE_FILE = SAVE_DIRECTORY + "/Settings";
+        private static readonly string APPDATA_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private static readonly string SAVE_DIRECTORY = APPDATA_DIRECTORY + "/Bread Tools";
+        private static readonly string SAVE_FILE = SAVE_DIRECTORY + "/Settings";
 
         public struct Info
         {
@@ -66,11 +66,9 @@ namespace Bread_Tools.Resources
                         (sender as ComboBox).SelectedIndex = (int)property.GetValue(structValue);
                 }
             }
-
-            DebugStruct<T>(structValue);
         }
 
-        private static void DebugStruct<T>(dynamic structValue)
+        public static void DebugStruct<T>(dynamic structValue)
         {
             var fields = typeof(T).GetProperties();
 
@@ -91,8 +89,6 @@ namespace Bread_Tools.Resources
                     break;
                 }
             }
-
-            Console.WriteLine(name + ": " + ret.ToString());
 
             return ret;
         }
@@ -129,8 +125,6 @@ namespace Bread_Tools.Resources
                         property.SetValue(structValue, number);
                 }
             }
-
-            DebugStruct<T>(structValue);
         }
 
         public static bool HasSettings()
@@ -143,9 +137,12 @@ namespace Bread_Tools.Resources
 
         public static void LoadSettings()
             => Data = MessagePackSerializer.Deserialize<Info>(File.ReadAllBytes(SAVE_FILE));
-        
+
 
         public static void SaveSettings()
-            => File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
+        {
+            File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
+            DebugStruct<Types.CommandTools.Settings>(Data.command);
+        }
     }
 }

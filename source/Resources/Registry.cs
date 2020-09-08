@@ -12,13 +12,16 @@ namespace Bread_Tools.Resources
 {
     static class WinRegistry
     {
-        private static readonly string REGEDIT_INFO = "Resources/RegistryData.yaml";
+        private static readonly string REGEDIT_INFO  = "Resources/Registry/Descendants.yaml";
+        private static readonly string REGEDIT_ROOTS = "Resources/Registry/RootNodes.yaml"
+
         private static string USERNAME = Environment.UserName;
 
         struct Regedit
         {
             public Types.GeneralTools.Registry[]  general;
             public Types.SettingsTools.Registry[] settings;
+            public Types.CommandTools.Registry[]  command;
         };
 
         static IDeserializer deserializer = new DeserializerBuilder().Build();
@@ -95,6 +98,34 @@ namespace Bread_Tools.Resources
 
                     break;
                 }
+                case "command":
+                {
+                    foreach (var registryData in REGEDIT.command)
+                    {
+                        if (Settings.GetValue<Types.CommandTools.Settings>(registryData.name, Settings.Data.command) == false)
+                            continue;
+
+                        RegistryKey mainKey = Registry.ClassesRoot.CreateSubKey(registryData.path, true);
+
+                        ApplyGeneralRegistryInformation(mainKey, registryData);
+
+                        RegistryKey commandKey = mainKey.CreateSubKey("command", true);
+
+                        if (registryData.command.Contains(".vbs"))
+                        {
+                            string[] split = registryData.command.Split(',');
+
+                            commandKey.SetValue("", $"wscript.exe {CURRENT_DIRECTORY + split[0]} {split[1]} {split[2]} {split[3]}");
+                        }
+                        else
+                            commandKey.SetValue("", registryData.command);
+
+                        mainKey.Close();
+                        commandKey.Close();
+                    }
+                    break;
+                }
+
                 case "settings":
                 {
                     foreach (var registryData in REGEDIT.settings)
@@ -128,7 +159,7 @@ namespace Bread_Tools.Resources
 
         private static void CreateRootNode(string keyName)
         {
-            if (Registry.ClassesRoot.OpenSubKey(keyName) != null)
+            if (Registry.ClassesRoot.OpenSubKey(keyName) == null)
                 return;
 
             RegistryKey key = Registry.ClassesRoot.CreateSubKey(keyName, true);
@@ -138,7 +169,7 @@ namespace Bread_Tools.Resources
             {
                 key.SetValue("", "Settings");
 
-                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/settings.ico");
+                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/Settings/settings.ico");
                 key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\settings");
 
                 string position = (Settings.Data.settings.Position == 1) ? "top" : "bottom";
@@ -151,7 +182,7 @@ namespace Bread_Tools.Resources
             {
                 key.SetValue("", "Command Line");
 
-                key.SetValue("icon", CURRENT_DIRECTORY + "/Resources/Icons/terminal.ico");
+                key.SetValue("Icon", CURRENT_DIRECTORY + "/Resources/Icons/Command/terminal.ico");
                 key.SetValue("ExtendedSubCommandsKey", @"Directory\ContextMenus\Tools\winterm");
 
                 string position = (Settings.Data.command.Position == 1) ? "top" : "bottom";
@@ -171,6 +202,12 @@ namespace Bread_Tools.Resources
 
                 TOOLS_ROOT.SetValue("ExtendedSubCommandsKey", EXTENDED_CMD_KEY);
                 TOOLS_ROOT.SetValue("Icon", ROOT_TOOLS_ICON);
+
+                string position = (Settings.Data.globals.Position == 1) ? "top" : "bottom";
+
+                if (Settings.Data.settings.Position != 0)
+                    TOOLS_ROOT.SetValue("Position", position);
+
                 TOOLS_ROOT.Close();
             }
 

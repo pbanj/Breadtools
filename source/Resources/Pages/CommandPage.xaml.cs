@@ -23,6 +23,9 @@ namespace Bread_Tools.Resources.Pages
             this.OpenPowerShellHere.Switched += this.SaveField;
 
             this.Position.SelectionChanged += this.SaveField;
+
+            Settings.Data.command.OpenAdminCommandPromptHere = this.OpenCommandPromptHere.IsOn;
+            Settings.Data.command.OpenAdminPowerShellHere = this.OpenPowerShellHere.IsOn;
         }
 
         private void OpenCommandPromptHere_Click(object sender, RoutedEventArgs e)
@@ -32,10 +35,10 @@ namespace Bread_Tools.Resources.Pages
             => Settings.Data.command.OpenAdminPowerShellHere = this.OpenPowerShellHere.IsOn;
 
         private void SaveField(object sender, EventArgs e)
-            => Settings.SaveUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
+            => Settings.SaveUISettings<Types.CommandTools.Settings>(sender, Settings.Data.command);
 
         private void LoadField(object sender, EventArgs e)
-            => Settings.LoadUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
+            => Settings.LoadUISettings<Types.CommandTools.Settings>(sender, Settings.Data.command);
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
             => Settings.SaveSettings();

@@ -3,17 +3,17 @@
       name: OpenRegedit
       icon: C:/Windows/regedit.exe
       path: Directory\ContextMenus\Tools\shell\1reg
-      command: C:/Windows/regedit.exe /m
+      command: regedit.exe /m
       needsAdmin: false
     - text: Toggle File Extensions
       name: ShowFileExtensions
-      icon: /Resources/Icons/file.ico
+      icon: /Resources/Icons/Utility/file.ico
       path: Directory\ContextMenus\Tools\shell\3File Extensions
       command: /Resources/Scripts/File_Extensions.vbs
       needsAdmin: true
     - text: Toggle Hidden Items
       name: HiddenFilesFolders
-      icon: /Resources/Icons/file.ico
+      icon: /Resources/Icons/Utility/file.ico
       path: Directory\ContextMenus\Tools\shell\4Hidden Files
       command: /Resources/Scripts/Hidden_Files.vbs
       needsAdmin: true
@@ -23,6 +23,33 @@
       path: Directory\ContextMenus\Tools\shell\5Restart Explorer
       command: C:/Windows/System32/cmd.exe /c "taskkill /f /im explorer.exe & start explorer.exe"
       needsAdmin: false
+
+command:
+    - text: Open Command Prompt Here
+      name: OpenCommandPromptHere
+      icon: /Resources/Icons/Command/terminal.ico
+      path: Directory\ContextMenus\Tools\winterm\shell\1cmd
+      command: wt.exe -p "Command Prompt" -d .
+    - text: Admin Command Prompt Here
+      name: OpenAdminCommandPromptHere
+      icon: /Resources/Icons/Command/terminal.ico
+      path: Directory\ContextMenus\Tools\winterm\shell\2acmd
+      command: /Resources/Scripts/Command_Line.vbs,wt.exe,.,"Command Prompt"
+    - text: Open PowerShell Here
+      name: OpenPowerShellHere
+      icon: /Resources/Icons/Command/terminal.ico
+      path: Directory\ContextMenus\Tools\winterm\shell\3opshell
+      command: wt.exe -p "Windows PowerShell" -d .
+    - text: Admin PowerShell Here
+      name: OpenAdminPowerShellHere
+      icon: /Resources/Icons/Command/terminal.ico
+      path: Directory\ContextMenus\Tools\winterm\shell\4apshell
+      command: /Resources/Scripts/Command_Line.vbs,wt.exe,.,"Windows PowerShell"
+    - text: Open WSL Here
+      name: OpenWSLHere
+      icon: /Resources/Icons/Command/terminal.ico
+      path: Directory\ContextMenus\Tools\winterm\shell\5bash
+      command: wt.exe -p "Ubuntu"
 
 settings:
     - text: Settings
@@ -34,18 +61,18 @@ settings:
     - text: Network & Internet
       name: NetworkInternet
       uri: ms-settings:network
-      icon: /Resources/Icons/network.ico
+      icon: /Resources/Icons/Settings/network.ico
       path: Directory\ContextMenus\Tools\settings\shell\2network
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: Windows Update
       name: WindowsUpdate
       uri: ms-settings:windowsupdate
-      icon: /Resources/Icons/update.ico
+      icon: /Resources/Icons/Settings/update.ico
       path: Directory\ContextMenus\Tools\settings\shell\3Update
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
     - text: System
       name: AboutThisPC
       uri: ms-settings:display
-      icon: /Resources/Icons/system.ico
+      icon: /Resources/Icons/Settings/system.ico
       path: Directory\ContextMenus\Tools\settings\shell\4System
       command: "{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"

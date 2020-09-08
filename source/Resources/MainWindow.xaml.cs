@@ -13,6 +13,7 @@ using System.IO;
 
 using MessagePack;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Bread_Tools
 {
@@ -56,6 +57,67 @@ namespace Bread_Tools
             // Open General by default
             StackPanel which = this.MainPanel.Children.OfType<StackPanel>().First();
             this.ShowGeneralPage(which, null);
+
+            this.LoadWindowsTerminalStuff();
+        }
+
+        private void LoadWindowsTerminalStuff()
+        {
+            // WINDOWS TERMINAL
+
+            try
+            {
+                Process windowsTerm = new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        FileName = "wsl",
+                        Arguments = "--list"
+                    }
+                };
+
+                windowsTerm.Start();
+                windowsTerm.StandardOutput.ReadToEnd();
+
+                windowsTerm.WaitForExit();
+                windowsTerm.Close();
+            }
+            catch (Exception)
+            {
+                // Not installed, disable Command stuff
+                this.windowPages[1].IsEnabled = false;
+            }
+
+            // WINDOWS SUBSYSTEM FOR LINUX
+
+            try
+            {
+                // Find default WSL distro
+                if (!this.windowPages[1].IsEnabled)
+                    return;
+
+                Process p = new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        FileName = "wsl",
+                        Arguments = "--list"
+                    }
+                };
+
+                p.Start();
+                p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+                p.Close();
+            }
+            catch (Exception)
+            {
+                // TO DO: disable WSL stuff
+            }
         }
 
         private SolidColorBrush GetBrushColor(string color)
