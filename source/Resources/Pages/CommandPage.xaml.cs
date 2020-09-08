@@ -1,20 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Bread_Tools.Resources.Pages
 {
     public partial class CommandPage : Page
-    { 
+    {
+        public List<ToggleSwitch.ToggleSwitch> Elements { get; set; }
+
         public CommandPage()
         {
             InitializeComponent();
 
+            this.Elements = new List<ToggleSwitch.ToggleSwitch>()
+            {
+                this.OpenWSLHere,
+                this.OpenCommandPromptHere,
+                this.OpenPowerShellHere
+            };
+
             this.OpenWSLHere.Loaded += this.LoadField;
             this.OpenCommandPromptHere.Loaded += this.LoadField;
             this.OpenPowerShellHere.Loaded += this.LoadField;
-
-            this.Position.Loaded += this.LoadField;
 
             ////////////////////
 
@@ -22,10 +30,16 @@ namespace Bread_Tools.Resources.Pages
             this.OpenCommandPromptHere.Switched += this.SaveField;
             this.OpenPowerShellHere.Switched += this.SaveField;
 
-            this.Position.SelectionChanged += this.SaveField;
-
             Settings.Data.command.OpenAdminCommandPromptHere = this.OpenCommandPromptHere.IsOn;
             Settings.Data.command.OpenAdminPowerShellHere = this.OpenPowerShellHere.IsOn;
+        }
+
+        public void SaveElements()
+        {
+            List<UIElement> elements = new List<UIElement>() { this.OpenWSLHere, this.OpenCommandPromptHere, this.OpenPowerShellHere };
+
+            foreach (UIElement element in elements)
+                this.SaveField(element, null);
         }
 
         private void OpenCommandPromptHere_Click(object sender, RoutedEventArgs e)

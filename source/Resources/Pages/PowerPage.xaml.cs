@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,6 @@ namespace Bread_Tools.Resources.Pages
             this.LogOff.Loaded += this.LoadField;
             this.RestartWithBootOptions.Loaded += this.LoadField;
 
-            this.Position.Loaded += this.LoadField;
-
             ////////////////////
             
             this.Hibernate.Switched += this.SaveField;
@@ -35,8 +34,19 @@ namespace Bread_Tools.Resources.Pages
             this.SwitchUser.Switched += this.SaveField;
             this.LogOff.Switched += this.SaveField;
             this.RestartWithBootOptions.Switched += this.SaveField;
+        }
 
-            this.Position.SelectionChanged += this.SaveField;
+        public void SaveElements()
+        {
+            List<UIElement> elements = new List<UIElement>() 
+            { 
+                this.Hibernate, this.Lock, this.Restart,
+                this.ShutDown, this.Sleep, this.SwitchUser,
+                this.LogOff, this.RestartWithBootOptions
+            };
+
+            foreach (UIElement element in elements)
+                this.SaveField(element, null);
         }
 
         private void SaveField(object sender, EventArgs e)

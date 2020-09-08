@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 
+using System.Collections.Generic;
+
 namespace Bread_Tools.Resources.Pages
 {
     public partial class GeneralPage : Page
@@ -15,16 +17,20 @@ namespace Bread_Tools.Resources.Pages
             this.ShowFileExtensions.Loaded += this.LoadField;
             this.RestartExplorer.Loaded += this.LoadField;
 
-            this.Position.Loaded += this.LoadField;
-
             ////////////////////
 
             this.HiddenFilesFolders.Switched += this.SaveField;
             this.OpenRegedit.Switched += this.SaveField;
             this.ShowFileExtensions.Switched += this.SaveField;
             this.RestartExplorer.Switched += this.SaveField;
+        }
 
-            this.Position.SelectionChanged += this.SaveField;
+        public void SaveElements()
+        {
+            List<UIElement> elements = new List<UIElement>() { this.HiddenFilesFolders, this.OpenRegedit, this.ShowFileExtensions, this.RestartExplorer };
+
+            foreach (UIElement element in elements)
+                this.SaveField(element, null);
         }
 
         private void SaveField(object sender, EventArgs e)

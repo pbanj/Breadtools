@@ -29,14 +29,19 @@ namespace Bread_Tools.Resources
             public Types.Global.Settings        globals;
         };
 
-        public static Info Data = new Info()
+        public static Info Data;
+
+        public static void CreateSettings()
         {
-            general = new Types.GeneralTools.Settings(),
-            command = new Types.CommandTools.Settings(),
-            power = new Types.PowerTools.Settings(),
-            settings = new Types.SettingsTools.Settings(),
-            globals = new Types.Global.Settings()
-        };
+            Data = new Info()
+            {
+                general = new Types.GeneralTools.Settings(),
+                command = new Types.CommandTools.Settings(),
+                power = new Types.PowerTools.Settings(),
+                settings = new Types.SettingsTools.Settings(),
+                globals = new Types.Global.Settings()
+            };
+        }
 
         public static void LoadUISettings<T>(object sender, dynamic structValue)
         {
@@ -140,9 +145,6 @@ namespace Bread_Tools.Resources
 
 
         public static void SaveSettings()
-        {
-            File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
-            DebugStruct<Types.PowerTools.Settings>(Data.power);
-        }
+            => File.WriteAllBytes(SAVE_FILE, MessagePackSerializer.Serialize(Data, MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options));
     }
 }

@@ -9,38 +9,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-using System.IO;
-
 using MessagePack;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Bread_Tools.Resources.Types.CommandTools;
+using System.Text;
+using System.IO;
+using System.Reflection;
 
 namespace Bread_Tools
 {
     public partial class MainWindow : Window
     {
-        List<Page> windowPages = new List<Page>()
-        {
-            new GeneralPage(),
-            new CommandPage(),
-            new PowerPage(),
-            new PCSettingsPage()
-        };
+        List<dynamic> windowPages;
 
         private readonly SettingsWindow settingsWindow;
 
         private string highLightColor = "#CFCFCF";
         private string unHighLightColor = "#E6E6E6";
 
-        public static bool IsAdministrator()
-        {
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                return principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-        }
+        private string WINDOWS_TERMINAL_PATH = @"C:\Users\{0}\AppData\Local\Microsoft\WindowsApps\wt.exe";
+        private string USERNAME = Environment.UserName;
 
         public MainWindow()
         {
@@ -48,8 +36,25 @@ namespace Bread_Tools
 
             MessagePackSerializer.DefaultOptions = MessagePack.Resolvers.ContractlessStandardResolverAllowPrivate.Options;
 
-            if (Settings.HasSettings())
-                Settings.LoadSettings();
+            try
+            {
+                Settings.CreateSettings();
+
+                if (Settings.HasSettings())
+                    Settings.LoadSettings();
+
+                this.windowPages = new List<dynamic>()
+                {
+                    new GeneralPage(),
+                    new CommandPage(),
+                    new PowerPage(),
+                    new PCSettingsPage()
+                };
+            }
+            catch (Exception e)
+            {
+                File.WriteAllText("traceback.txt", e.Message);
+            }
 
             Settings.SaveSettings();
 
@@ -66,30 +71,8 @@ namespace Bread_Tools
         {
             // WINDOWS TERMINAL
 
-            try
-            {
-                Process windowsTerm = new Process()
-                {
-                    StartInfo = new ProcessStartInfo()
-                    {
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        FileName = "wsl",
-                        Arguments = "--list"
-                    }
-                };
-
-                windowsTerm.Start();
-                windowsTerm.StandardOutput.ReadToEnd();
-
-                windowsTerm.WaitForExit();
-                windowsTerm.Close();
-            }
-            catch (Exception)
-            {
-                // Not installed, disable Command stuff
+            if (!File.Exists(string.Format(WINDOWS_TERMINAL_PATH, USERNAME)))
                 this.windowPages[1].IsEnabled = false;
-            }
 
             // WINDOWS SUBSYSTEM FOR LINUX
 
@@ -105,19 +88,21 @@ namespace Bread_Tools
                     {
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
+                        StandardOutputEncoding = Encoding.UTF8,
                         FileName = "wsl",
                         Arguments = "--list"
                     }
                 };
 
                 p.Start();
-                p.StandardOutput.ReadToEnd();
-                p.WaitForExit();
+                string output = p.StandardOutput.ReadToEnd();
                 p.Close();
+
+                Console.WriteLine(output);
             }
             catch (Exception)
             {
-                // TO DO: disable WSL stuff
+                (this.windowPages[1] as CommandPage).Elements[0].IsEnabled = false;
             }
         }
 
@@ -207,7 +192,11 @@ namespace Bread_Tools
 
         private void ApplySettings(object sender, MouseButtonEventArgs e)
         {
-            //Settings.SaveSettings();
+            foreach (var page in this.windowPages)
+                page.SaveElements();
+
+            Settings.SaveSettings();
+            
             WinRegistry.WriteToRegistry();
         }
 

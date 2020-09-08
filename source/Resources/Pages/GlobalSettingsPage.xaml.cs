@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Bread_Tools.Resources.Pages
 {
@@ -20,11 +9,21 @@ namespace Bread_Tools.Resources.Pages
         public GlobalSettingsPage()
         {
             InitializeComponent();
+
+            this.Theme.Loaded += this.LoadField;
+            this.Position.Loaded += this.LoadField;
+
+            this.Theme.SelectionChanged += this.SaveField;
+            this.Position.SelectionChanged += this.SaveField;
         }
+
+        private void SaveField(object sender, EventArgs e)
+            => Settings.SaveUISettings<Types.Global.Settings>(sender, Settings.Data.globals);
+
+        private void LoadField(object sender, EventArgs e)
+            => Settings.LoadUISettings<Types.Global.Settings>(sender, Settings.Data.globals);
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+            => Settings.SaveSettings();
     }
 }

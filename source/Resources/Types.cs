@@ -15,8 +15,6 @@ namespace Bread_Tools.Resources.Types
             public bool OpenRegedit        { get; set; }
             public bool RestartExplorer    { get; set; }
             public bool ShowFileExtensions { get; set; }
-
-            public int Position { get; set; }
         };
 
         /*
@@ -48,8 +46,6 @@ namespace Bread_Tools.Resources.Types
             public bool SwitchUser { get; set; }
             public bool LogOff     { get; set; }
             public bool RestartWithBootOptions { get; set; }
-
-            public int Position { get; set; }
         }
 
         public struct Registry
@@ -71,8 +67,6 @@ namespace Bread_Tools.Resources.Types
             public bool OpenAdminCommandPromptHere { get; set; }
             public bool OpenPowerShellHere         { get; set; }
             public bool OpenAdminPowerShellHere    { get; set; }
-
-            public int Position { get; set; }
         }
 
         public struct Registry
@@ -93,8 +87,6 @@ namespace Bread_Tools.Resources.Types
             public bool NetworkInternet { get; set; }
             public bool AboutThisPC     { get; set; }
             public bool WindowsUpdate   { get; set; }
-
-            public int Position { get; set; }
         }
 
         public struct Registry

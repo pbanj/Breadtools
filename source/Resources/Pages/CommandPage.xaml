@@ -17,8 +17,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackPanel>
@@ -42,22 +40,6 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3">
-                <StackPanel>
-                    <Label Content="Menu Position" FontSize="16pt" FontWeight="Bold" Margin="12,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"></Label>
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="The position in the Context Menu for this section to display at." /></TextBlock>
-                    <ComboBox BorderThickness="0" Background="Transparent" x:Name="Position" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="12,8,0,8" IsSynchronizedWithCurrentItem="True" SelectedIndex="0" BorderBrush="#00000000" FontSize="16" MinWidth="142">
-                        <System:String>Default (Middle)</System:String>
-                        <System:String>Top</System:String>
-                        <System:String>Bottom</System:String>
-                        <ComboBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="0, 0, 2, 2"/>
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="4">
                 <Button Name="SaveButton" Content="Save" Width="96" HorizontalAlignment="Right" Margin="0,0,8,8" BorderThickness="0"
                             Foreground="white" Cursor="Hand" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                             Background="CornflowerBlue" FontSize="12pt" Padding="1,1,1,3" Click="SaveButton_Click">

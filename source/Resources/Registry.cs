@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 using YamlDotNet.Serialization;
 
 namespace Bread_Tools.Resources
@@ -13,8 +14,6 @@ namespace Bread_Tools.Resources
     {
         private static readonly string REGEDIT_INFO  = "Resources/Registry/Descendants.yaml";
         private static readonly string REGEDIT_ROOTS = "Resources/Registry/RootNodes.yaml";
-
-        private static string USERNAME = Environment.UserName;
 
         struct Regedit
         {
@@ -159,12 +158,20 @@ namespace Bread_Tools.Resources
             }
         }
 
-        public static void UninstallRemoveRegistryData()
+        public static void RemoveRegistryData()
         {
-            // TO DO: Warning dialog, check if anything *was* installed using Settings
+            if (Registry.ClassesRoot.OpenSubKey(RootNodes.nodes[0].path) == null)
+                return;
+
+            MessageBoxResult result = MessageBox.Show("This will remove all Bread Tools components. Continue?", "Bread Tools", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result != MessageBoxResult.Yes)
+                return;
 
             Registry.ClassesRoot.DeleteSubKeyTree(RootNodes.nodes[1].path);
             Registry.ClassesRoot.DeleteSubKey(RootNodes.nodes[0].path);
+
+            Settings.CreateSettings();
         }
 
         private static bool ShouldCreateSection(string text)
@@ -220,6 +227,14 @@ namespace Bread_Tools.Resources
                         shellKey.SetValue("ExtendedSubCommandsKey", nodeData.subcommand);
 
                     shellKey.Close();
+                }
+                else
+                {
+                    string position = Settings.Data.globals.Position == 2 ? "top" : (Settings.Data.globals.Position == 3 ? "bottom" : "");
+
+                    if (!string.IsNullOrEmpty(position))
+                        mainKey.SetValue("Position", position);
+
                 }
 
                 mainKey.Close();
