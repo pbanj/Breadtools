@@ -45,7 +45,7 @@ namespace Bread_Tools.Resources.Types
             public bool Sleep      { get; set; }
             public bool SwitchUser { get; set; }
             public bool LogOff     { get; set; }
-            public bool RestartWithBootOptions { get; set; }
+            public bool RebootWithBootOptions { get; set; }
         }
 
         public struct Registry

@@ -5,11 +5,10 @@ using System.Windows.Controls;
 
 namespace Bread_Tools.Resources.Pages
 {
-    /// <summary>
-    /// Interaction logic for PCSettings.xaml
-    /// </summary>
     public partial class PCSettingsPage : Page
     {
+        List<UIElement> elements;
+
         public PCSettingsPage()
         {
             InitializeComponent();
@@ -25,15 +24,26 @@ namespace Bread_Tools.Resources.Pages
             this.NetworkInternet.Switched += this.SaveField;
             this.AboutThisPC.Switched += this.SaveField;
             this.WindowsUpdate.Switched += this.SaveField;
+
+            this.elements = new List<UIElement>()
+            { 
+                this.MainSettings, this.NetworkInternet, 
+                this.AboutThisPC, this.WindowsUpdate 
+            };
         }
 
         public void SaveElements()
         {
-            List<UIElement> elements = new List<UIElement>() { this.MainSettings, this.NetworkInternet, this.AboutThisPC, this.WindowsUpdate };
-
-            foreach (UIElement element in elements)
+            foreach (UIElement element in this.elements)
                 this.SaveField(element, null);
         }
+
+        public void RefreshPage()
+        {
+            foreach (UIElement element in this.elements)
+                this.LoadField(element, null);
+        }
+
         private void SaveField(object sender, EventArgs e)
             => Settings.SaveUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
 

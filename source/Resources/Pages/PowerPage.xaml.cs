@@ -11,18 +11,20 @@ namespace Bread_Tools.Resources.Pages
     /// </summary>
     public partial class PowerPage : Page
     {
+        List<UIElement> elements;
+
         public PowerPage()
         {
             InitializeComponent();
 
-            this.Hibernate.Loaded += this.LoadField;
             this.Lock.Loaded += this.LoadField;
+            this.LogOff.Loaded += this.LoadField;
             this.Restart.Loaded += this.LoadField;
+            this.RebootWithBootOptions.Loaded += this.LoadField;
             this.ShutDown.Loaded += this.LoadField;
             this.Sleep.Loaded += this.LoadField;
+            this.Hibernate.Loaded += this.LoadField;
             this.SwitchUser.Loaded += this.LoadField;
-            this.LogOff.Loaded += this.LoadField;
-            this.RestartWithBootOptions.Loaded += this.LoadField;
 
             ////////////////////
             
@@ -33,20 +35,26 @@ namespace Bread_Tools.Resources.Pages
             this.Sleep.Switched += this.SaveField;
             this.SwitchUser.Switched += this.SaveField;
             this.LogOff.Switched += this.SaveField;
-            this.RestartWithBootOptions.Switched += this.SaveField;
+            this.RebootWithBootOptions.Switched += this.SaveField;
+
+            this.elements = new List<UIElement>()
+            {
+                this.Hibernate, this.Lock, this.Restart,
+                this.ShutDown, this.Sleep, this.SwitchUser,
+                this.LogOff, this.RebootWithBootOptions
+            };
         }
 
         public void SaveElements()
         {
-            List<UIElement> elements = new List<UIElement>() 
-            { 
-                this.Hibernate, this.Lock, this.Restart,
-                this.ShutDown, this.Sleep, this.SwitchUser,
-                this.LogOff, this.RestartWithBootOptions
-            };
-
-            foreach (UIElement element in elements)
+            foreach (UIElement element in this.elements)
                 this.SaveField(element, null);
+        }
+
+        public void RefreshPage()
+        {
+            foreach (UIElement element in this.elements)
+                this.LoadField(element, null);
         }
 
         private void SaveField(object sender, EventArgs e)

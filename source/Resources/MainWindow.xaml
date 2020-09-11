@@ -6,7 +6,7 @@
         x:Name="MainWindow1" x:Class="Bread_Tools.MainWindow"
         mc:Ignorable="d"
         xmlns:fa5="http://schemas.fontawesome.com/icons/"
-        Title="Bread Tools" Height="480" Width="600" Icon="icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Left" VerticalAlignment="Top">
+        Title="Bread Tools" Height="480" Width="600" Icon="icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Left" VerticalAlignment="Top" Closing="MainWindow1_Closing">
     <Window.Resources>
     </Window.Resources>
     <Grid Background="Transparent">
@@ -39,9 +39,8 @@
                 <fa5:SvgAwesome Icon="Solid_SignOutAlt" Width="16" HorizontalAlignment="Center" Margin="11,0,7,0" UseLayoutRounding="False" VerticalAlignment="Center" />
                 <Label FontSize="18" Content="Apply Changes" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,44,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="UninstallTools" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
-                <fa5:SvgAwesome Icon="Solid_Unlink" Width="16" HorizontalAlignment="Center" Margin="11,0,7,0" UseLayoutRounding="False" VerticalAlignment="Center" />
-                <Label FontSize="18" Content="Uninstall Tools" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <StackPanel Name="UninstallToolsButton" Orientation="Horizontal" Margin="0,44,0,0" Cursor="Hand" HorizontalAlignment="Stretch" MouseLeftButtonUp="UninstallTools" MouseEnter="HoverPanel" MouseLeave="UnHoverPanel">
+                <Label FontSize="18" HorizontalContentAlignment="Center" Width="{Binding Path=Width, ElementName=MainPanel}" Content="Uninstall Tools" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
             </StackPanel>
         </StackPanel>
         <Label Width="{Binding Path=Width, ElementName=MainPanel}" HorizontalAlignment="Left" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">

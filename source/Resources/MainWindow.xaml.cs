@@ -65,6 +65,8 @@ namespace Bread_Tools
             this.ShowGeneralPage(which, null);
 
             this.LoadWindowsTerminalStuff();
+
+            this.UninstallToolsButton.IsEnabled = WinRegistry.AreComponentsInstalled();
         }
 
         private void LoadWindowsTerminalStuff()
@@ -76,29 +78,48 @@ namespace Bread_Tools
 
             // WINDOWS SUBSYSTEM FOR LINUX
 
+            string [] output;
+
             try
             {
                 // Find default WSL distro
                 if (!this.windowPages[1].IsEnabled)
                     return;
 
-                Process p = new Process()
+                using (Process process = new Process())
                 {
-                    StartInfo = new ProcessStartInfo()
-                    {
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        StandardOutputEncoding = Encoding.UTF8,
-                        FileName = "wsl",
-                        Arguments = "--list"
-                    }
+                    process.StartInfo.FileName = "wsl";
+                    process.StartInfo.Arguments = "--list";
+
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+
+                    process.Start();
+
+                    StreamReader reader = process.StandardOutput;
+                    
+                    output = reader.ReadToEnd().Trim().Replace("\n", "").Split(':');
+                    process.WaitForExit();
                 };
 
-                p.Start();
-                string output = p.StandardOutput.ReadToEnd();
-                p.Close();
+                string distro;
+                foreach (string item in output)
+                {
+                    StringBuilder builder = new StringBuilder();
 
-                Console.WriteLine(output);
+                    foreach (char c in item)
+                    {
+                        if (c > 0)
+                            builder.Append(c);
+                    }
+
+                    if ((distro = builder.ToString()).Contains("Default"))
+                    {
+                        WinRegistry.WSL_DISTRO_NAME = distro.Substring(0, distro.IndexOf("(")).Trim();
+                        Console.WriteLine($"Distro: '{WinRegistry.WSL_DISTRO_NAME}'");
+                        break;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -196,11 +217,25 @@ namespace Bread_Tools
                 page.SaveElements();
 
             Settings.SaveSettings();
-            
+
             WinRegistry.WriteToRegistry();
+
+            this.UninstallToolsButton.IsEnabled = WinRegistry.AreComponentsInstalled();
         }
 
         private void UninstallTools(object sender, MouseButtonEventArgs e)
-            => WinRegistry.RemoveRegistryData();
+        {
+            WinRegistry.RemoveRegistryData();
+
+            this.UninstallToolsButton.IsEnabled = WinRegistry.AreComponentsInstalled();
+
+            foreach (var page in this.windowPages)
+                page.RefreshPage();
+        }
+
+        private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show($"Thanks for using the Bread Tools installation GUI. Have a fucked day, {USERNAME}.", "Bread Tools", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

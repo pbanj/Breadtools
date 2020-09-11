@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using YamlDotNet.Serialization;
 
@@ -23,15 +24,14 @@ namespace Bread_Tools.Resources
             public Types.PowerTools.Registry[] power;
         };
 
-        struct Nodes
-        {
-            public RootNodes[] nodes;
-        }
+        struct Nodes { public RootNodes[] nodes; }
 
         static readonly IDeserializer deserializer = new DeserializerBuilder().Build();
 
-        static Regedit REGEDIT = deserializer.Deserialize<Regedit>(File.ReadAllText(REGEDIT_INFO));
-        static Nodes RootNodes = deserializer.Deserialize<Nodes>(File.ReadAllText(REGEDIT_ROOTS));
+        private static Regedit REGEDIT = deserializer.Deserialize<Regedit>(File.ReadAllText(REGEDIT_INFO));
+        private static Nodes RootNodes = deserializer.Deserialize<Nodes>(File.ReadAllText(REGEDIT_ROOTS));
+
+        public static string WSL_DISTRO_NAME;
 
         private static string CURRENT_DIRECTORY = Directory.GetCurrentDirectory();
 
@@ -110,7 +110,12 @@ namespace Bread_Tools.Resources
                             commandKey.SetValue("", $"wscript.exe {CURRENT_DIRECTORY + split[0]} {split[1]} {split[2]} {split[3]}");
                         }
                         else
-                            commandKey.SetValue("", registryData.command);
+                        {
+                            if (Regex.IsMatch(registryData.command, "{\\d+}"))
+                                commandKey.SetValue("", string.Format(registryData.command, WSL_DISTRO_NAME));
+                            else
+                                commandKey.SetValue("", registryData.command);
+                        }
 
                         mainKey.Close();
                         commandKey.Close();
@@ -160,7 +165,7 @@ namespace Bread_Tools.Resources
 
         public static void RemoveRegistryData()
         {
-            if (Registry.ClassesRoot.OpenSubKey(RootNodes.nodes[0].path) == null)
+            if (!AreComponentsInstalled())
                 return;
 
             MessageBoxResult result = MessageBox.Show("This will remove all Bread Tools components. Continue?", "Bread Tools", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -172,7 +177,11 @@ namespace Bread_Tools.Resources
             Registry.ClassesRoot.DeleteSubKey(RootNodes.nodes[0].path);
 
             Settings.CreateSettings();
+            Settings.SaveSettings();
         }
+
+        public static bool AreComponentsInstalled()
+            => Registry.ClassesRoot.OpenSubKey(RootNodes.nodes[0].path) != null;
 
         private static bool ShouldCreateSection(string text)
         {
@@ -183,26 +192,27 @@ namespace Bread_Tools.Resources
                 case "Command Line":
                 {
                     result = typeof(Types.CommandTools.Settings).GetProperties().Any(x => 
-                        (bool)x.GetValue(Settings.Data.command) != false);
+                        (bool)x.GetValue(Settings.Data.command));
                     break;
                 }
                 case "Windows Settings":
                 {
                     result = typeof(Types.SettingsTools.Settings).GetProperties().Any(x =>
-                        (bool)x.GetValue(Settings.Data.settings) != false);
+                        (bool)x.GetValue(Settings.Data.settings));
                     break;
                 }
                 case "Power":
                 {
                     result = typeof(Types.PowerTools.Settings).GetProperties().Any(x =>
-                        (bool)x.GetValue(Settings.Data.power) != false);
+                        (bool)x.GetValue(Settings.Data.power));
                     break;
                 }
                 default:
+                    result = true;
                     break;
             }
 
-            Console.Write(text + ":" + result);
+            Console.WriteLine(text + ": " + result);
 
             return result;
         }
@@ -215,6 +225,9 @@ namespace Bread_Tools.Resources
 
                 if (!string.IsNullOrEmpty(nodeData.shell))
                 {
+                    if (!ShouldCreateSection(nodeData.text))
+                        continue;
+
                     RegistryKey shellKey = Registry.ClassesRoot.CreateSubKey(nodeData.shell, true);
 
                     if (!string.IsNullOrEmpty(nodeData.text))
@@ -235,6 +248,11 @@ namespace Bread_Tools.Resources
                     if (!string.IsNullOrEmpty(position))
                         mainKey.SetValue("Position", position);
 
+                    if (!string.IsNullOrEmpty(nodeData.icon))
+                        mainKey.SetValue("Icon", CURRENT_DIRECTORY + nodeData.icon);
+
+                    if (!string.IsNullOrEmpty(nodeData.subcommand))
+                        mainKey.SetValue("ExtendedSubCommandsKey", nodeData.subcommand);
                 }
 
                 mainKey.Close();

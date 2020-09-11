@@ -8,6 +8,8 @@ namespace Bread_Tools.Resources.Pages
 {
     public partial class GeneralPage : Page
     {
+        List<UIElement> elements;
+
         public GeneralPage()
         {
             InitializeComponent();
@@ -23,14 +25,24 @@ namespace Bread_Tools.Resources.Pages
             this.OpenRegedit.Switched += this.SaveField;
             this.ShowFileExtensions.Switched += this.SaveField;
             this.RestartExplorer.Switched += this.SaveField;
+
+            this.elements = new List<UIElement>()
+            { 
+                this.HiddenFilesFolders, this.OpenRegedit, 
+                this.ShowFileExtensions, this.RestartExplorer 
+            };
         }
 
         public void SaveElements()
         {
-            List<UIElement> elements = new List<UIElement>() { this.HiddenFilesFolders, this.OpenRegedit, this.ShowFileExtensions, this.RestartExplorer };
-
-            foreach (UIElement element in elements)
+            foreach (UIElement element in this.elements)
                 this.SaveField(element, null);
+        }
+
+        public void RefreshPage()
+        {
+            foreach (UIElement element in this.elements)
+                this.LoadField(element, null);
         }
 
         private void SaveField(object sender, EventArgs e)

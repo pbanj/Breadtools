@@ -77,7 +77,7 @@
                 <StackPanel>
                     <Label HorizontalContentAlignment="Left" Content="Restart With Boot Options" FontSize="16pt" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="12,0,0,0" Padding="0" />
                     <TextBlock FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,0,0" TextWrapping="Wrap"><Run Text="Restart into Troubleshooting Mode with Advanced Options." /></TextBlock>
-                    <ToggleSwitch:ToggleSwitch Name="RestartWithBootOptions" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
+                    <ToggleSwitch:ToggleSwitch Name="RebootWithBootOptions" Width="44" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,0,8" Padding="0,0,2,0" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="8">

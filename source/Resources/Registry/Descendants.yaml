@@ -49,7 +49,7 @@ command:
       name: OpenWSLHere
       icon: /Resources/Icons/Command/terminal.ico
       path: Directory\ContextMenus\Tools\winterm\shell\5bash
-      command: wt.exe -p "Ubuntu"
+      command: wt.exe -p "{0}"
 
 power:
     - text: Lock this PC
@@ -68,7 +68,7 @@ power:
       path: Directory\ContextMenus\Tools\power\shell\3restart
       command: Shutdown -r -f -t 00
     - text: Restart with Boot Options
-      name: RestartWithBootOptions
+      name: RebootWithBootOptions
       icon: /Resources/Icons/Power/restart.ico
       path: Directory\ContextMenus\Tools\power\shell\4restartboot
       command: Shutdown -r -o -f -t 00
@@ -87,9 +87,11 @@ power:
       icon: /Resources/Icons/Power/hibernate.ico
       path: Directory\ContextMenus\Tools\power\shell\7hibernate
       command: Shutdown -h
-    - text: Restart
-      name: Restart
     - text: Switch User
+      name: SwitchUser
+      icon: /Resources/Icons/Power/switch.ico
+      path: Directory\ContextMenus\Tools\power\shell\8switch
+      command: tsdiscon
 
 settings:
     - text: Settings
