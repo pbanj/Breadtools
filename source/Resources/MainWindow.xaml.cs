@@ -43,6 +43,8 @@ namespace Bread_Tools
                 if (Settings.HasSettings())
                     Settings.LoadSettings();
 
+                Settings.DebugStruct<Resources.Types.SettingsTools.Settings>(Settings.Data.settings);
+
                 this.windowPages = new List<dynamic>()
                 {
                     new GeneralPage(),

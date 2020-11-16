@@ -13,5 +13,11 @@ namespace Bread_Tools.Resources
             InitializeComponent();
             this.Content = new GlobalSettingsPage();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            e.Cancel = true;
+        }
     }
 }

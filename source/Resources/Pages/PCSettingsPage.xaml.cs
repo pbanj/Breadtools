@@ -13,7 +13,7 @@ namespace Bread_Tools.Resources.Pages
         {
             InitializeComponent();
 
-            this.MainSettings.Loaded += this.LoadField ;
+            this.MainSettings.Loaded += this.LoadField;
             this.NetworkInternet.Loaded += this.LoadField;
             this.AboutThisPC.Loaded += this.LoadField;
             this.WindowsUpdate.Loaded += this.LoadField;
@@ -28,7 +28,7 @@ namespace Bread_Tools.Resources.Pages
             this.elements = new List<UIElement>()
             { 
                 this.MainSettings, this.NetworkInternet, 
-                this.AboutThisPC, this.WindowsUpdate 
+                this.AboutThisPC,  this.WindowsUpdate 
             };
         }
 
@@ -45,10 +45,10 @@ namespace Bread_Tools.Resources.Pages
         }
 
         private void SaveField(object sender, EventArgs e)
-            => Settings.SaveUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
+            => Settings.SaveUISettings<Types.SettingsTools.Settings>(sender, Settings.Data.settings);
 
         private void LoadField(object sender, EventArgs e)
-            => Settings.LoadUISettings<Types.GeneralTools.Settings>(sender, Settings.Data.general);
+            => Settings.LoadUISettings<Types.SettingsTools.Settings>(sender, Settings.Data.settings);
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
             => Settings.SaveSettings();

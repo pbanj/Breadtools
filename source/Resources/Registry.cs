@@ -145,6 +145,9 @@ namespace Bread_Tools.Resources
                 {
                     foreach (var registryData in REGEDIT.settings)
                     {
+                        if (Settings.GetValue<Types.SettingsTools.Settings>(registryData.name, Settings.Data.settings) == false)
+                            continue;
+
                         RegistryKey mainKey = Registry.ClassesRoot.CreateSubKey(registryData.path, true);
                         ApplyGeneralRegistryInformation(mainKey, registryData);
 
@@ -183,6 +186,21 @@ namespace Bread_Tools.Resources
         public static bool AreComponentsInstalled()
             => Registry.ClassesRoot.OpenSubKey(RootNodes.nodes[0].path) != null;
 
+        public static bool CheckForSectionWritable<T>(dynamic structValue)
+        {
+            var fields = typeof(T).GetProperties();
+
+            foreach (var field in fields)
+            {
+                var value = field.GetValue(structValue);
+                Console.WriteLine(value);
+                if ((bool)value)
+                    return true;
+            }
+
+            return false;
+        }
+
         private static bool ShouldCreateSection(string text)
         {
             bool result = false;
@@ -191,20 +209,17 @@ namespace Bread_Tools.Resources
             {
                 case "Command Line":
                 {
-                    result = typeof(Types.CommandTools.Settings).GetProperties().Any(x => 
-                        (bool)x.GetValue(Settings.Data.command));
+                    result = CheckForSectionWritable<Types.CommandTools.Settings>(Settings.Data.command);
                     break;
                 }
                 case "Windows Settings":
                 {
-                    result = typeof(Types.SettingsTools.Settings).GetProperties().Any(x =>
-                        (bool)x.GetValue(Settings.Data.settings));
+                    result = CheckForSectionWritable<Types.SettingsTools.Settings>(Settings.Data.settings);
                     break;
                 }
                 case "Power":
                 {
-                    result = typeof(Types.PowerTools.Settings).GetProperties().Any(x =>
-                        (bool)x.GetValue(Settings.Data.power));
+                    result = CheckForSectionWritable<Types.PowerTools.Settings>(Settings.Data.power);
                     break;
                 }
                 default:
@@ -212,7 +227,7 @@ namespace Bread_Tools.Resources
                     break;
             }
 
-            Console.WriteLine(text + ": " + result);
+            Console.WriteLine("ShouldCreateSection: " + text + ": " + result);
 
             return result;
         }
@@ -225,6 +240,7 @@ namespace Bread_Tools.Resources
 
                 if (!string.IsNullOrEmpty(nodeData.shell))
                 {
+                    Console.WriteLine("WriteToRegistry: " + nodeData.text);
                     if (!ShouldCreateSection(nodeData.text))
                         continue;
 

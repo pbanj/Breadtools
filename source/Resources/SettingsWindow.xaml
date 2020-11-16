@@ -11,5 +11,5 @@
         Height="270"
         Icon="icon.ico"
         ShowInTaskbar="False" 
-        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" VerticalAlignment="Top" HorizontalAlignment="Left">
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" VerticalAlignment="Top" HorizontalAlignment="Left" Closing="Window_Closing">
 </Window>

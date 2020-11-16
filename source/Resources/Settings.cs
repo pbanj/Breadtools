@@ -129,7 +129,10 @@ namespace Bread_Tools.Resources
                     else if (value is int number)
                         property.SetValue(structValue, number);
                 }
+
+                Console.WriteLine($"Saving {property.Name}: {property.GetValue(structValue)}");
             }
+
         }
 
         public static bool HasSettings()
