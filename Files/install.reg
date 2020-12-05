@@ -54,7 +54,7 @@
 @="Env Variables"
 
 [HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\5env\command]
-@="rundll32.exe sysdm.cpl,EditEnvironmentVariables"
+@="powershell.exe -windowstyle hidden -command \"Start-Process rundll32 -ArgumentList '/s,/c, sysdm.cpl,EditEnvironmentVariables' -Verb runAs\""
 
 [HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell]
 
