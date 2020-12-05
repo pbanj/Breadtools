@@ -42,7 +42,8 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 - restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.
 - added environmental variables in the new "scripts & tools" submenu so you can edit your path easily.
 - clicking the "system" option in settings now brings you to about instead of display.
-- each time you click regedit it now opens a new window to make multitasking and editing easier.    
+- each time you click regedit it now opens a new window to make multitasking and editing easier.  
+
 0.0000069 fix n++ fuckery
 0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
 0.00000000069 testing 
