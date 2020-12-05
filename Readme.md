@@ -31,7 +31,7 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 5. If icons don't show up reboot or restart explorer
 
 ![tools](https://i.imgur.com/EtEhJ2Q.png)  
-![terminal](https://i.imgur.com/eXqbfyj.png)  
+![terminal](https://i.imgur.com/icl8EHV.png)  
 ![Scripts & Tools](https://i.imgur.com/n9shwiJ.png)  
 ![settings](https://i.imgur.com/1nD93K9.png)  
 
