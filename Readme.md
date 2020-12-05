@@ -1,5 +1,5 @@
 This will install a menu to your context(right click) menu.  
-Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, and open powershell here(normal and admin)
+Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, open powershell here(normal and admin), Settings, and environmental variables.
 
 This is meant for advanced users who are comfortable editing registry files as this is very much an alpha
 
@@ -24,7 +24,7 @@ to
 change the `"startingDirectory"` option to `"startingDirectory": "."` and save the file.
 
 **HOW TO USE:**
-1. Uninstall old tools menu(you can leave settings and power if you use them)
+1. Uninstall old tools menu(you can keep power if you use it) this must be done with each update on this branch as lots of shit changes.
 2. Clone the repo
 3. Run Tools.bat as admin
 4. Follow what it says
@@ -36,6 +36,13 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 
 **Changelog:**  
-0.00000000069 testing  
-0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
+0.00069
+- redid menus to get around microsofts stupid fucking limit.
+- settings is now its own menu.
+- restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.
+- added environmental variables in the new "scripts & tools" submenu so you can edit your path easily.
+- clicking the "system" option in settings now brings you to about instead of display.
+- each time you click regedit it now opens a new window to make multitasking and editing easier.    
 0.0000069 fix n++ fuckery
+0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
+0.00000000069 testing 
