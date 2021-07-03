@@ -14,7 +14,7 @@ exit
     )
 
 @echo off
-CLS
+CLS
 
 :start
 cls
@@ -264,7 +264,7 @@ goto start_unin
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_all.reg
 del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico C:\Windows\bash.ico
-echo Done Uninstalling. Have a fucked day.
+echo Done Uninstalling. Please like and subscribe.
 pause
 exit
 
@@ -272,7 +272,7 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_Tool.reg
 del C:\Windows\file.ico C:\Windows\Files_Extensions.vbs C:\Windows\Hidden_Files.vbs C:\Windows\tools.ico C:\Windows\bash.ico
-echo Done Uninstalling. Have a fucked day.
+echo Done Uninstalling. Please like and subscribe.
 pause
 exit
 
@@ -280,7 +280,7 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_Po.reg
 del C:\Windows\lock.ico C:\Windows\log.ico C:\Windows\rstart.ico C:\Windows\shut.ico C:\Windows\hib.ico C:\Windows\sleep.ico C:\Windows\switch.ico
-echo Done Uninstalling. Have a fucked day.
+echo Done Uninstalling. Please like and subscribe.
 pause
 exit
 
@@ -288,6 +288,6 @@ exit
 cd /d %~dp0
 REGEDIT /s Files\Reg\Uninstall_Settings.reg
 del C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Windows\update.ico
-echo Done Uninstalling. Have a fucked day.
+echo Done Uninstalling. Please like and subscribe.
 pause
 exit
