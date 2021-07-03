@@ -37,7 +37,11 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 
 **Changelog:**  
-0.00069
+0.0069  
+- fixed a fuck up i caused   
+- clicking the settings option will now bring you to the main settings page instead of display   
+
+0.00069   
 - redid menus to get around microsofts stupid fucking limit.
 - settings is now its own menu.
 - restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.
@@ -46,5 +50,7 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 - each time you click regedit it now opens a new window to make multitasking and editing easier.  
 
 0.0000069 fix n++ fuckery
+   
 0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
-0.00000000069 testing 
+
+0.00000000069 testing  

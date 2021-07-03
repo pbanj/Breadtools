@@ -123,6 +123,7 @@
 [HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell]
 
 [HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\1settings]
+"SettingsURI"="ms-settings:main"
 @="Settings"
 "icon"="C:\\breadtools\\icons\\settings.ico"
 
