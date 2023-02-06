@@ -93,8 +93,8 @@ each time you click regedit it now opens a new window to make multitasking and e
 
 Contributors  
 - [pbanj](https://github.com/pbanj) - Registry, and batch files
-- [TurtleP](https://github.com/TurtleP) - GUI & Renaming script, coming up with the new name  
+- [TurtleP](https://github.com/TurtleP) - Coming up with the new name  
 - [xGhostBoyx](https://github.com/xGhostBoyx) - Icons  
 - [NotQuiteApex](https://github.com/NotQuiteApex) - I'm sure he's done something  
-- [lexterm](https://github.com/lextm/windowsterminal-shell) - for making the admin terminals possible  
+- [lexterm](https://github.com/lextm/windowsterminal-shell) - For making the admin terminals possible  
 - [sevenforums](https://sevenforums.com) - extension, and hidden files VB scripts
