@@ -1,3 +1,36 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCuDJHSdtGY/Kw5ZSQqWL1edD6E0/erH++WIrl5QWecxbbPP1buCM60e70vxSbAk2n9JpOkeCRpcah2kYhwIoG1NuHe5I8iTvxyvQ0uGhg==
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+JeA==
+::cxY6rQJ7JhzQF1fEqQJQ
+::ZQ05rAF9IBncCkqN+0xwdVs0
+::ZQ05rAF9IAHYFVzEqQJQ
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQJQ
+::dhA7uBVwLU+EWDk=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATElA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCuDJHSdtGY/Kw5ZSQqWL1edD6E0/erH++WIrl5QWecxbbPP36eabuUL7yU=
+::YB416Ek+ZW8=
+::
+::
+::978f952a14a936cc963da21a135fa983
 @echo off
 goto check_Permissions
 
@@ -7,22 +40,20 @@ goto check_Permissions
     if %errorLevel% == 0 (
         echo off
     ) else (
-        echo I know reading is hard but come on, it's a small text file. Go RTFM.
+        echo Im sorry %username%, but I cant let you do that.
+		echo I know reading is hard but come on, it's a small text file. Go RTFM.
 		echo If this was a 3ds you'd have bricked.
 pause
 exit
     )
 
 @echo off
-CLS
+
+CLS
 
 :start
 cls
-echo Welcome, this will install the new tools menu with windows terminal into your context menu.  make sure you edited the registry files first.
-echo Batch file, and reg files made by pbanj.
-echo VB Scripts by sevenforums.com.
-echo Icons from google :p
-echo Thanks to xGhostboyx for the settings menu icons.
+echo Welcome %username%, this will install the tools, settings menu, and a power menu.
 echo 1. Install
 echo 2. Uninstall
 echo 3. Exit
@@ -47,21 +78,21 @@ goto start_pos
 
 :all
 cd /d %~dp0
-REGEDIT /s Files\install.reg
-robocopy Files\breadtools C:\breadtools /E
+REGEDIT /s Files\Installers\tools_and_settings_install.reg
+robocopy Files\Breadtools C:\Breadtools /E
 goto bicons
 
 :tall
 cd /d %~dp0
-REGEDIT /s Files\tinstall.reg
-robocopy Files\breadtools C:\breadtools /E
+REGEDIT /s Files\Installers\top_tools_and_settings_install.reg
+robocopy Files\Breadtools C:\Breadtools /E
 goto bicons
 
 :ball
 cd /d %~dp0
 cd /d %~dp0
-REGEDIT /s Files\binstall.reg
-robocopy Files\breadtools C:\breadtools /E
+REGEDIT /s Files\Installers\bottom_tools_and_settings_install.reg
+robocopy Files\Breadtools C:\Breadtools /E
 goto bicons
 
 :bicons
@@ -81,44 +112,89 @@ goto start_bicons
 
 :ub
 cd /d %~dp0
-robocopy Files\Bash\Ubuntu C:\breadtools\icons
-goto done
+robocopy Files\Bash\Ubuntu C:\Breadtools\icons
+goto powr
 
 :de
 cd /d %~dp0
-robocopy Files\Bash\Debian C:\breadtools\icons
-goto done
+robocopy Files\Bash\Debian C:\Breadtools\icons
+goto powr
 
 :ka
 cd /d %~dp0
-robocopy Files\Bash\Kali C:\breadtools\icons
-goto done
+robocopy Files\Bash\Kali C:\Breadtools\icons
+goto powr
 
 :su
 cd /d %~dp0
-robocopy Files\Bash\Suse C:\breadtools\icons
-goto done
+robocopy Files\Bash\Suse C:\Breadtools\icons
+goto powr
 
-:done
+:powr
 cls
-echo Done installing. Have a fucked day.
-pause
-exit
+echo %username% would you like to install the power menu also?
+echo 1. yes
+echo 2. no
+set /P A=Choose one then press enter.
+if %A%==1 goto powri
+if %A%==2 goto done
+goto powr
+
+:powri
+cls
+robocopy Files\Power C:\Breadtools\icons\power
+REGEDIT /s Files\Installers\pwrinstall.reg
+goto done
 
 :unin
 cls
 :start_unin
 echo Uninstall
-echo 1. Uninstall
+echo 1. Uninstall just tools?
+echo 2. Uninstall just settings?
+echo 3. Uninstall just power?
+echo 4. Uninstall everything?
 set /P A=Choose what to uninstall then press enter. 
-if %A%==1 goto uall
+if %A%==1 goto utol
+if %A%==2 goto uset
+if %a%==3 goto upow
+if %A%==4 goto evthang
 goto start_unin
 
-:uall
+:utol
 cd /d %~dp0
-REGEDIT /s Files\uninstall.reg
-rmdir /s C:\breadtools
-echo Done Uninstalling. Have a fucked day.
+REGEDIT /s Files\Uninstallers\tooluninstall.reg
+del C:\Breadtools\icons\tools.ico C:\Breadtools\icons\terminal.ico C:\Breadtools\icons\file.ico C:\Breadtools\icons\bash.ico
+echo Done Uninstalling. Have a fucked day %username%.
 pause
 exit
 
+:uset
+cd /d %~dp0
+REGEDIT /s Files\Uninstallers\settinguninstall.reg
+del C:\Breadtools\icons\settings.ico C:\Breadtools\icons\update.ico C:\Breadtools\icons\system.ico C:\Breadtools\icons\network.ico
+echo Done Uninstalling. Have a fucked day %username%.
+pause
+exit
+
+:upow
+cd /d %~dp0
+REGEDIT /s Files\Uninstallers\uninstallpow.reg
+rmdir /s C:\Breadtools\power
+echo Done Uninstalling. Have a fucked day %username%.
+pause
+exit
+
+:evthang
+cd /d %~dp0
+REGEDIT /s Files\Uninstallers\evthang.reg
+rmdir /s C:\Breadtools\
+echo Done Uninstalling. Have a fucked day %username%.
+pause
+exit
+
+:done
+cls
+echo Done installing. Have a fucked day %username%.
+pause
+exit

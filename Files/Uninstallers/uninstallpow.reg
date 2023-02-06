@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+
+; Created by: Pbanj
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\xPower]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\1lock]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\1lock\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\2log]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\2log\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\3hip]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\3hip\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\4slp]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\4slp\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\5rstart]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\5rstart\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\6obo]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\6obo\command]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\7shut]
+[-HKEY_CLASSES_ROOT\Directory\ContextMenus\Power\shell\7shut\command]

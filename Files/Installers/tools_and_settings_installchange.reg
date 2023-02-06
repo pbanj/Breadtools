@@ -1,0 +1,155 @@
+﻿Windows Registry Editor Version 5.00
+
+; Created by: Pbanj.
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Tools]
+"ExtendedSubCommandsKey"="\\Directory\\ContextMenus\\Tools"
+"Icon"="C:\\breadtools\\icons\\tools.ico"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Settings]
+"ExtendedSubCommandsKey"="\\Directory\\ContextMenus\\Settings"
+"Position"="Bottom"
+"icon"="C:\\breadtools\\icons\\settings.ico"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\1file]
+"HasUAShield"=""
+"icon"="C:\\breadtools\\icons\\file.ico"
+@="File Extensions"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\1file\command]
+@="explorer /root,C:\\breadtools\\scripts\\Files_Extensions.vbs"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\2hidden]
+"HasUAShield"=""
+@="Hidden Files"
+"icon"="C:\\breadtools\\icons\\file.ico"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\2hidden\command]
+@="explorer /root,C:\\breadtools\\scripts\\Hidden_Files.vbs"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\3restart ex]
+@="Restart Explorer"
+"icon"="C:\\Windows\\explorer.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\3restart ex\command]
+@="\"C:\\Windows\\System32\\cmd.exe\" /c \"taskkill /f /im explorer.exe & start explorer.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\4sfc]
+"HasLUAShield"=""
+@="Run SFC /Scannow"
+"icon"="cmd.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\4sfc\command]
+@="PowerShell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/s,/k, sfc.exe /scannow' -Verb runAs\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\5env]
+"icon"="sysdm.cpl,-1"
+"HasLUAShield"=""
+@="Env Variables"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\scripts\shell\5env\command]
+@="powershell.exe -windowstyle hidden -command \"Start-Process rundll32 -ArgumentList '/s,/c, sysdm.cpl,EditEnvironmentVariables' -Verb runAs\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell\1reg]
+@="Regedit"
+"Icon"="C:\\Windows\\regedit.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell\1reg\command]
+@="C:\\Windows\\regedit.exe /m"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell\2sterm]
+@="Windows Terminal"
+"ExtendedSubCommandsKey"="\\Directory\\ContextMenus\\Tools\\winterm"
+"Icon"="C:\\breadtools\\icons\\terminal.ico"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\shell\3scripts]
+"Icon"="C:\\breadtools\\icons\\file.ico"
+@="Scripts && Tools"
+"ExtendedSubCommandsKey"="\\Directory\\ContextMenus\\Tools\\scripts"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell]
+@="Powershell Here"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\1cmd]
+"Icon"="C:\\Windows\\System32\\cmd.exe"
+@="Open CMD Here"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\1cmd\command]
+@="\"C:\\Users\\adam\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe\" -p \"Command Prompt\" -d \"%V.\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\2acmd]
+"HasLUAShield"=""
+"Icon"="imageres.dll,-5324"
+@="Admin CMD Here"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\2acmd\command]
+@="wscript.exe \"C:\\breadtools\\scripts/helper.vbs\" \"C:\\Users\\adam\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe\" \"%V.\" \"Command Prompt\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\3opshell]
+@="Open Powershell Here"
+"Icon"="imageres.dll,-5372"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\3opshell\command]
+@="\"C:\\Users\\adam\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe\" -d \"%V\\\\.\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\4apshell]
+@="Admin Powershell Here"
+"HasLUAShield"=""
+"Icon"="imageres.dll,-5373"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\4apshell\command]
+@="wscript.exe \"C:\\breadtools\\scripts\\helper.vbs\" \"C:\\Users\\adam\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe\" \"%V.\" \"Windows PowerShell\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\5bash]
+"Icon"="C:\\breadtools\\icons\\bash.ico"
+@="Open Bash Here"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Tools\winterm\shell\5bash\command]
+@="\"C:\\Users\\adam\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe\" -p \"Ubuntu\" -d \"%V.\""
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings]
+"icon"="SystemSettingsBroker.exe"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell]
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\1settings]
+"SettingsURI"="ms-settings:main"
+@="Settings"
+"icon"="C:\\breadtools\\icons\\settings.ico"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\1settings\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\2network]
+"SettingsURI"="ms-settings:network"
+@="Network && Internet"
+"icon"="C:\\breadtools\\icons\\network.ico"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\2network\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\3update]
+"SettingsURI"="ms-settings:windowsupdate"
+"icon"="C:\\breadtools\\icons\\update.ico"
+@="Update"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\3update\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\4System]
+"SettingsURI"="ms-settings:about"
+"icon"="C:\\breadtools\\icons\\system.ico"
+@="System"
+
+[HKEY_CLASSES_ROOT\Directory\ContextMenus\Settings\shell\4System\command]
+"DelegateExecute"="{556FF0D6-A1EE-49E5-9FA4-90AE116AD744}"
