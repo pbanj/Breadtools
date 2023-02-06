@@ -1,37 +1,61 @@
-This will install a menu to your context(right click) menu.  
-Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, open admin powershell here, and open powershell here.
+This will install up to 3 menus to your context(right click) menu.  
+Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, open powershell here(normal and admin), settings, environmental variables, and power options.
 
-**Newest ver may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one.**
-Here is an older ver that will work on windows 8/8.1 and should work on 7: [Tools_menu.zip](https://cdn.discordapp.com/attachments/246402376099954689/288882232892981249/Tools_Menu.zip)
+
+**Newest version may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one.**
+Here is an older version that will work on windows 8/8.1 and should work on 7: [Tools_menu_8&8.1_final.zip](https://github.com/pbanj/tools-menu/blob/master/Tools_Menu_8%268.1_final.zip)  
+Here is the final Pre-terminal version, based on this [commit](https://github.com/pbanj/tools-menu/commit/465fc305d9d5842e294f1111b449ea1c0d6a9841) [tools menu final.zip](https://github.com/pbanj/tools-menu/blob/master/tools%20menu%20final.zip)  
+
+
+**YOU MUST HAVE WSL AND WINDOWS TERMINAL INSTALLED FROM THE WINDOWS STORE**
+- This was only tested with Ubuntu. If you use a different distro you'll have to change `Ubuntu` to the one you use in the install file you plan to use. This will be fixed.
+
+- You may have to change your default settings for windows terminal located `%localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
+change the `"startingDirectory"` option to `"startingDirectory": "."` and save the file.
+
 
 
 **HOW TO USE:**
+1. Uninstall old tools menu this must be done if coming from v1.7 or any of the terminal alpha versions.
+2. Download and extract it somewhere
+3. Run Tools.bat as admin
+4. Follow what it says
+5. If icons don't show up restart explorer
 
-1. Run Tools.bat as admin
-2. Follow what it says
-3. If icons dont show up reboot or restart explorer
-
-If you want to use open bash here you need to follow [enable the linux subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
-
-If you'd like take ownership in your context menu you will find it in the "take ownership" folder. 
-
-**What the tool menu looks like with all options**
-
-
-![Tools](https://i.imgur.com/YJcfjSb.png)
+![tools](https://i.imgur.com/EtEhJ2Q.png)  
+![terminal](https://i.imgur.com/icl8EHV.png)  
+![Scripts & Tools](https://i.imgur.com/n9shwiJ.png)  
+![settings](https://i.imgur.com/1nD93K9.png)  
 
 
-**What the power menu looks like with all options**
+**Changelog:**  
+2.0   
+new name  
+cleaned up batch file script  
+updated icons  
+make cmd, powershell, and bash go through windows terminal  
+added more install & uninstall options  
+moved all files out of C:\windows to C:\Breadtools
+made it creepy ;)  
+all the changes from the terminal alphas  
 
+- terminal alpha 0.0069  
+fixed a fuck up i caused   
+clicking the settings option will now bring you to the main settings page instead of display   
 
-![Power](http://i.imgur.com/d7gK35h.png)
+- terminal alpha 0.00069   
+redid menus to get around Microsoft's stupid fucking limit.
+settings is now its own menu.
+restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.
+added environmental variables in the new "scripts & tools" sub-menu so you can edit your path easily.
+clicking the "system" option in settings now brings you to about instead of display.
+each time you click regedit it now opens a new window to make multitasking and editing easier.  
 
-**What the settings menu looks like**
+- terminal alpha 0.0000069 fix n++ fuckery
+   
+- terminal alpha 0.000000069 move settings, add sfc /scannow, and update icons(thanks to ghostboy)  
 
-![settings](https://i.imgur.com/9epxxU5.png)
-
-
-**Changelog:**
+- terminal alpha 0.00000000069 testing  
 
 - v1.7 - Cleaned up the admin cmd command to shut kip up.
 
@@ -64,3 +88,13 @@ If you'd like take ownership in your context menu you will find it in the "take 
 - v0.3 - Able to remove the restart explorer.bat file thanks to coldbloc
 
 - v0.2 - Added open powershell as admin here, fixed open cmd as admin here, no longer need ele.exe and the e.cmd files.
+
+
+
+Contributors  
+- [pbanj](https://github.com/pbanj) - Registry, and batch files
+- [TurtleP](https://github.com/TurtleP) - GUI & Renaming script, coming up with the new name  
+- [xGhostBoyx](https://github.com/xGhostBoyx) - Icons  
+- [NotQuiteApex](https://github.com/NotQuiteApex) - I'm sure he's done something  
+- [lexterm](https://github.com/lextm/windowsterminal-shell) - for making the admin terminals possible  
+- [sevenforums](https://sevenforums.com) - extension, and hidden files VB scripts
