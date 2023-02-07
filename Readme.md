@@ -16,11 +16,10 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 
 **HOW TO USE:**
-1. Uninstall old tools menu this must be done if coming from v1.7 or any of the terminal alpha versions.
-2. Download and extract it somewhere
-3. Run Tools.bat as admin
-4. Follow what it says
-5. If icons don't show up restart explorer
+1. Download and extract it somewhere
+2. Run Breadtools.bat as admin
+3. Follow what it says
+4. If icons don't show up restart explorer
 
 ![tools](https://i.imgur.com/EtEhJ2Q.png)  
 ![terminal](https://i.imgur.com/icl8EHV.png)  
@@ -30,8 +29,10 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 **Changelog:**  
 2.0   
-new name  
+new name
+clears out previous install to make upgrading easy  
 cleaned up batch file script  
+got rid of all install registry files
 updated icons  
 make cmd, powershell, and bash go through windows terminal  
 added more install & uninstall options  
@@ -92,7 +93,7 @@ each time you click regedit it now opens a new window to make multitasking and e
 
 
 Contributors  
-- [pbanj](https://github.com/pbanj) - Registry, and batch files
+- [pbanj](https://github.com/pbanj) - Registry, batch, and vb script files
 - [TurtleP](https://github.com/TurtleP) - Coming up with the new name  
 - [xGhostBoyx](https://github.com/xGhostBoyx) - Icons  
 - [NotQuiteApex](https://github.com/NotQuiteApex) - I'm sure he's done something  
