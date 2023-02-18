@@ -28,7 +28,7 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 
 **Changelog:**  
-2.0.1
+2.0.1  
 noticed terminals were broken. must have replaced the edited lines with the original ones without noticing. now fixed.
 
 2.0   
