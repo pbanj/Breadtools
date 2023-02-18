@@ -112,21 +112,21 @@ Reg.exe add "HKCR\Directory\ContextMenus\Tools\shell\3scripts" /v "ExtendedSubCo
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell" /ve /t REG_SZ /d "Powershell Here" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\1cmd" /v "Icon" /t REG_SZ /d "C:\Windows\System32\cmd.exe" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\1cmd" /ve /t REG_SZ /d "Open CMD Here" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\1cmd\command" /ve /t REG_SZ /d "\"C:\Users\replace\AppData\Local\Microsoft\WindowsApps\wt.exe\" -p \"Command Prompt\" -d \"%%V.\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\1cmd\command" /ve /t REG_SZ /d "\"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" -p \"Command Prompt\" -d \"%%V.\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\2acmd" /v "HasLUAShield" /t REG_SZ /d "" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\2acmd" /v "Icon" /t REG_SZ /d "imageres.dll,-5324" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\2acmd" /ve /t REG_SZ /d "Admin CMD Here" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\2acmd\command" /ve /t REG_SZ /d "wscript.exe \"C:\breadtools\scripts/helper.vbs\" \"C:\Users\replace\AppData\Local\Microsoft\WindowsApps\wt.exe\" \"%%V.\" \"Command Prompt\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\2acmd\command" /ve /t REG_SZ /d "wscript.exe \"C:\breadtools\scripts/helper.vbs\" \"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" \"%%V.\" \"Command Prompt\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\3opshell" /ve /t REG_SZ /d "Open Powershell Here" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\3opshell" /v "Icon" /t REG_SZ /d "imageres.dll,-5372" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\3opshell\command" /ve /t REG_SZ /d "\"C:\Users\replace\AppData\Local\Microsoft\WindowsApps\wt.exe\" -d \"%%V\\.\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\3opshell\command" /ve /t REG_SZ /d "\"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" -d \"%%V\\.\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell" /ve /t REG_SZ /d "Admin Powershell Here" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell" /v "HasLUAShield" /t REG_SZ /d "" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell" /v "Icon" /t REG_SZ /d "imageres.dll,-5373" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell\command" /ve /t REG_SZ /d "wscript.exe \"C:\breadtools\scripts\helper.vbs\" \"C:\Users\replace\AppData\Local\Microsoft\WindowsApps\wt.exe\" \"%%V.\" \"Windows PowerShell\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell\command" /ve /t REG_SZ /d "wscript.exe \"C:\breadtools\scripts\helper.vbs\" \"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" \"%%V.\" \"Windows PowerShell\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash" /v "Icon" /t REG_SZ /d "C:\breadtools\icons\bash.ico" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash" /ve /t REG_SZ /d "Open Bash Here" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash\command" /ve /t REG_SZ /d "\"C:\Users\replace\AppData\Local\Microsoft\WindowsApps\wt.exe\" -p \"Ubuntu\" -d \"%%V.\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash\command" /ve /t REG_SZ /d "\"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" -p \"Ubuntu\" -d \"%%V.\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings" /v "icon" /t REG_SZ /d "SystemSettingsBroker.exe" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings\shell\1settings" /v "SettingsURI" /t REG_SZ /d "ms-settings:main" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings\shell\1settings" /ve /t REG_SZ /d "Settings" /f
