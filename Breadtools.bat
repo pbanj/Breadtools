@@ -24,7 +24,7 @@ del C:\Windows\network.ico C:\Windows\settings.ico C:\Windows\system.ico C:\Wind
 cls
 rmdir /s /Q C:\Breadtools\
 cls
-echo Welcome %username%, this will install the tools, settings menu, and a power menu.
+echo Welcome %username%, this'll install the tools, settings menu, and a power menu.
 echo 1. Install
 echo 2. Uninstall
 echo 3. Exit
@@ -43,6 +43,7 @@ cls
 cscript "%~dp0\Files\Installers\ree.vbs"
 cls
 cd %systemroot%\system32
+winget install 9N0DX20HK701 --accept-package-agreements --accept-source-agreements --silent
 @echo off
 cls
 echo Choose position
