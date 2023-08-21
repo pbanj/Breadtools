@@ -2,7 +2,8 @@ This will install up to 3 menus to your context(right click) menu and Windows Te
 Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, open powershell here(normal and admin), settings, environmental variables, and power options.
 
 
-**Newest version may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one. Should work with Windows 11**
+**Newest version may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one. Should work with Windows 11**  
+
 Here is an older version that will work on windows 8/8.1 and should work on 7: [Tools_menu_8&8.1_final.zip](https://github.com/pbanj/tools-menu/blob/master/Tools_Menu_8%268.1_final.zip)  
 Here is the final Pre-terminal version, based on this [commit](https://github.com/pbanj/tools-menu/commit/465fc305d9d5842e294f1111b449ea1c0d6a9841) [tools menu final.zip](https://github.com/pbanj/tools-menu/blob/master/tools%20menu%20final.zip)  
 
