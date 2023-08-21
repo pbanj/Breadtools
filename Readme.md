@@ -1,14 +1,23 @@
-This will install up to 3 menus to your context(right click) menu.  
+This will install up to 3 menus to your context(right click) menu and Windows Terminal.  
 Items include regedit, open cmd here(normal and admin) show/hide known file types, show/hide hidden files/folders, open bash here, open powershell here(normal and admin), settings, environmental variables, and power options.
 
 
-**Newest version may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one.**
+**Newest version may only work fully on windows 10 with the newest "features" update, as I update it with any changes needed after each one. Should work with Windows 11**
 Here is an older version that will work on windows 8/8.1 and should work on 7: [Tools_menu_8&8.1_final.zip](https://github.com/pbanj/tools-menu/blob/master/Tools_Menu_8%268.1_final.zip)  
 Here is the final Pre-terminal version, based on this [commit](https://github.com/pbanj/tools-menu/commit/465fc305d9d5842e294f1111b449ea1c0d6a9841) [tools menu final.zip](https://github.com/pbanj/tools-menu/blob/master/tools%20menu%20final.zip)  
 
 
-**YOU MUST HAVE WSL AND WINDOWS TERMINAL INSTALLED FROM THE WINDOWS STORE**
-- This was only tested with Ubuntu. If you use a different distro you'll have to change `Ubuntu` to the one you use in the install file you plan to use. This will be fixed.
+**YOU MUST HAVE WSL INSTALLED**  
+In an admin CMD or Powershell enter one of these commands(use the one for the distro you want) and reboot.    
+`wsl --install -d Ubuntu`  
+`wsl --install -d Ubuntu-22.04.2`  
+`wsl --install -d Ubuntu-20.04.6`  
+`wsl --install -d Ubuntu-18.04.6`  
+`wsl --install -d Debian`    
+`wsl --install -d kali-linux`  
+`wsl --install -d openSUSE-Tumbleweed`  
+`wsl --install -d openSUSE-Leap-15.5`  
+
 
 - You may have to change your default settings for windows terminal located `%localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
 change the `"startingDirectory"` option to `"startingDirectory": "."` and save the file.
@@ -28,10 +37,14 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 
 **Changelog:**  
-2.0.1  
+
+- 2.0.2
+Now installs Windows Terminal for you, this needs winget(should already have this if your system is fully updated on windows 10, and it comes with 11 by default)
+
+- 2.0.1  
 noticed terminals were broken. must have replaced the edited lines with the original ones without noticing. now fixed.
 
-2.0   
+- 2.0   
 new name
 clears out previous install to make upgrading easy  
 cleaned up batch file script  
