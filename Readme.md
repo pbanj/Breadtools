@@ -21,7 +21,7 @@ In an admin CMD or Powershell enter one of these commands(use the one for the di
 
 
 - You may have to change your default settings for windows terminal located `%localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
-change the `"startingDirectory"` option to `"startingDirectory": "."` and save the file.
+change the `"startingDirectory"` option to `"startingDirectory": "."` and save the file.  
 
 
 
@@ -39,6 +39,9 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 **Changelog:**  
 
+- 2.0.3
+Fix bash not opening properlly
+
 - 2.0.2
 Now installs Windows Terminal for you, this needs winget(should already have this if your system is fully updated on windows 10, and it comes with 11 by default)
 
@@ -46,14 +49,14 @@ Now installs Windows Terminal for you, this needs winget(should already have thi
 noticed terminals were broken. must have replaced the edited lines with the original ones without noticing. now fixed.
 
 - 2.0   
-new name
+new name  
 clears out previous install to make upgrading easy  
 cleaned up batch file script  
-got rid of all install registry files
+got rid of all install registry files  
 updated icons  
 make cmd, powershell, and bash go through windows terminal  
 added more install & uninstall options  
-moved all files out of C:\windows to C:\Breadtools
+moved all files out of C:\windows to C:\Breadtools  
 made it creepy ;)  
 all the changes from the terminal alphas  
 
@@ -62,12 +65,12 @@ fixed a fuck up i caused
 clicking the settings option will now bring you to the main settings page instead of display   
 
 - terminal alpha 0.00069   
-redid menus to get around Microsoft's stupid fucking limit.
-settings is now its own menu.
-restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.
-added environmental variables in the new "scripts & tools" sub-menu so you can edit your path easily.
-clicking the "system" option in settings now brings you to about instead of display.
-each time you click regedit it now opens a new window to make multitasking and editing easier.  
+redid menus to get around Microsoft's stupid fucking limit.  
+settings is now its own menu.  
+restart explorer, file types, sfc, and hidden files moved to a new sub menu under tools.  
+added environmental variables in the new "scripts & tools" sub-menu so you can edit your path easily.  
+clicking the "system" option in settings now brings you to about instead of display.  
+each time you click regedit it now opens a new window to make multitasking and editing easier.    
 
 - terminal alpha 0.0000069 fix n++ fuckery
    
