@@ -127,7 +127,7 @@ Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell" /v "Icon"
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\4apshell\command" /ve /t REG_SZ /d "wscript.exe \"C:\breadtools\scripts\helper.vbs\" \"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" \"%%V.\" \"Windows PowerShell\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash" /v "Icon" /t REG_SZ /d "C:\breadtools\icons\bash.ico" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash" /ve /t REG_SZ /d "Open Bash Here" /f
-Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash\command" /ve /t REG_SZ /d "\"C:\Users\%username%\AppData\Local\Microsoft\WindowsApps\wt.exe\" -p \"Ubuntu\" -d \"%%V.\"" /f
+Reg.exe add "HKCR\Directory\ContextMenus\Tools\winterm\shell\5bash\command" /ve /t REG_SZ /d "powershell.exe -noexit -command "\"&" wsl.exe --cd '%V'\"" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings" /v "icon" /t REG_SZ /d "SystemSettingsBroker.exe" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings\shell\1settings" /v "SettingsURI" /t REG_SZ /d "ms-settings:main" /f
 Reg.exe add "HKCR\Directory\ContextMenus\Settings\shell\1settings" /ve /t REG_SZ /d "Settings" /f
