@@ -11,13 +11,10 @@ Here is the final Pre-terminal version, based on this [commit](https://github.co
 **YOU MUST HAVE WSL INSTALLED**  
 In an admin CMD or Powershell enter one of these commands(use the one for the distro you want) and reboot.    
 `wsl --install -d Ubuntu`  
-`wsl --install -d Ubuntu-22.04.2`  
-`wsl --install -d Ubuntu-20.04.6`  
-`wsl --install -d Ubuntu-18.04.6`  
 `wsl --install -d Debian`    
 `wsl --install -d kali-linux`  
 `wsl --install -d openSUSE-Tumbleweed`  
-`wsl --install -d openSUSE-Leap-15.5`  
+
 
 
 - You may have to change your default settings for windows terminal located `%localappdata%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
@@ -39,8 +36,11 @@ change the `"startingDirectory"` option to `"startingDirectory": "."` and save t
 
 **Changelog:**  
 
+- 2.0.4 Groundhogs Day
+Fix bash not opening properly 
+
 - 2.0.3
-Fix bash not opening properlly
+Fix bash not opening properly 
 
 - 2.0.2
 Now installs Windows Terminal for you, this needs winget(should already have this if your system is fully updated on windows 10, and it comes with 11 by default)
